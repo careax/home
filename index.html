@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CareAX | Senior PM &amp; AI Technology Instructor</title>
+  <meta name="description" content="AI × UX = AX. 기획자·디자이너·PM을 위한 AX 워크숍. IBM / Hyundai AutoEver 출신 Rana Lee의 커리큘럼." />
+  <meta property="og:title" content="RANA LEE · 이라나 · AX Instructor" />
+  <meta property="og:description" content="AI × UX = AX. 기획자·디자이너·PM을 위한 AX 워크숍." />
+  <meta property="og:locale" content="ko_KR" />
+  <meta property="og:site_name" content="CareAX" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://careax.github.io/home/" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="RANA LEE · 이라나 · AX Instructor" />
+  <meta name="twitter:description" content="AI × UX = AX. 기획자·디자이너·PM을 위한 AX 워크숍." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- ═══════════════════════════════ NAV ═══════════════════════════════ -->
+<nav class="nav" id="nav">
+  <div class="nav__inner">
+    <a href="#hero" class="nav__logo" aria-label="CareAX Home">
+      <svg class="logo-diamond" width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M11 1L21 11L11 21L1 11L11 1Z" fill="currentColor"/>
+      </svg>
+      <span class="logo-text">CareAX</span>
+    </a>
+
+    <ul class="nav__links" role="list">
+      <li><a href="#about"      class="nav__link" data-i18n="nav.about">About</a></li>
+      <li><a href="#curriculum" class="nav__link" data-i18n="nav.curriculum">Curriculum</a></li>
+      <li><a href="#method"     class="nav__link" data-i18n="nav.method">Method</a></li>
+      <li><a href="#contact"    class="nav__link" data-i18n="nav.contact">Contact</a></li>
+    </ul>
+
+    <div class="nav__right">
+      <button class="lang-toggle" id="langToggle" aria-label="Switch language">
+        <span id="langLabel">KO</span><span class="lang-sep">|</span><span id="langLabelAlt">EN</span>
+      </button>
+      <a href="#contact" class="nav__cta" data-i18n="nav.cta">Booking 2026</a>
+      <button class="nav__hamburger" id="hamburger" aria-label="메뉴 열기" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div class="nav__mobile" id="mobileMenu" aria-hidden="true">
+    <ul role="list">
+      <li><a href="#about"      class="nav__link" data-i18n="nav.about">About</a></li>
+      <li><a href="#curriculum" class="nav__link" data-i18n="nav.curriculum">Curriculum</a></li>
+      <li><a href="#method"     class="nav__link" data-i18n="nav.method">Method</a></li>
+      <li><a href="#contact"    class="nav__link" data-i18n="nav.contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════ HERO ════════════════════════════════ -->
+<section id="hero" class="hero">
+  <div class="hero__bg-tag">AI</div>
+
+  <div class="hero__inner">
+    <div class="hero__left">
+      <p class="hero__eyebrow">— Profile / 001</p>
+
+      <h1 class="hero__name">
+        <span class="hero__name--en">RANA<br>LEE</span>
+        <span class="hero__name--ko">이라나 · AX Instructor</span>
+      </h1>
+
+      <ul class="hero__roles" role="list">
+        <li class="hero__role">
+          <strong data-i18n="hero.role1">Senior PM</strong>
+          <span>· Application Development &amp; Innovation</span>
+          <em>IBM</em>
+        </li>
+        <li class="hero__role">
+          <strong data-i18n="hero.role2">UX/UI 기획 · AI Technology Team</strong>
+          <em>Hyundai AutoEver</em>
+        </li>
+        <li class="hero__role">
+          <strong data-i18n="hero.role3">UX Design M.A. · 이화여자대학교 석사</strong>
+          <em>Ewha Womans University</em>
+        </li>
+      </ul>
+
+      <p class="hero__formula">AI×UX=AX</p>
+    </div>
+
+    <div class="hero__right">
+      <div class="hero__img-wrap">
+        <img
+          src="public/assets/rana-profile-cutout.png"
+          alt="Rana Lee · 이라나 · AX Instructor"
+          class="hero__img"
+          onerror="this.style.opacity='0'"
+        />
+        <div class="hero__img-label">이라나 · <strong>Rana Lee</strong> · AX Lead</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ticker -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker__track">
+      <span>AI × UX = AX</span>
+      <span>Generative Product Thinking</span>
+      <span>바이브코딩 · Vibe Coding</span>
+      <span>From Discovery to Delivery</span>
+      <span>Sr. PM · IBM / Hyundai AutoEver</span>
+      <span>AI × UX = AX</span>
+      <span>Generative Product Thinking</span>
+      <span>바이브코딩 · Vibe Coding</span>
+      <span>From Discovery to Delivery</span>
+      <span>Sr. PM · IBM / Hyundai AutoEver</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ ABOUT ═══════════════════════════════ -->
+<section id="about" class="about section">
+  <div class="section__label">
+    <span class="section__num">01 / About</span>
+    <span class="section__tag" data-i18n="about.tag">The Instructor</span>
+  </div>
+
+  <div class="about__inner">
+    <div class="about__heading-col">
+      <h2 class="section__heading" data-i18n="about.heading">
+        AI 플랫폼 기획 실무형.<br />
+        기획 PM 실무형 강사.
+      </h2>
+    </div>
+
+    <div class="about__body-col">
+      <p class="about__lead" data-i18n="about.lead">
+        IBM Application Development &amp; Innovation에서 Sr. PM으로, 현대오토에버 AI Technology팀에서 UX/UI 기획자로 활동하며 실제 AI 제품과 서비스를 기획부터 개발, 출시까지 경험해온 실무자입니다. 또한 이화여자대학교에서 UX 디자인 석사를 마치며 사용자 경험과 서비스 설계에 대한 전문성을 쌓았습니다.
+      </p>
+      <p class="about__body">
+        제 강의는 <strong data-i18n="about.bold1">단순히 ChatGPT 활용법을 배우는 데 그치지 않습니다.</strong> AI 시대에 기획자·디자이너·PM이 어떤 방식으로 문제를 정의하고, 협업하며, 일을 설계해야 하는지 실무 중심으로 다룹니다. 특히 AI 플랫폼을 기획하고 개발하는 과정에서 실무자들이 가장 궁금해하는 지점들을 실제 사례와 경험을 바탕으로 쉽게 풀어내며, <strong data-i18n="about.bold2">현업에 바로 적용할 수 있는 실용적인 인사이트</strong>를 전달하고자 합니다.
+      </p>
+      <blockquote class="about__quote" data-i18n="about.quote">
+        "AI 와 함께 기획, 디자인, 개발이 융합되는 생산성 높은 AX 직무 역량을 키웁니다."
+      </blockquote>
+      <p class="about__body" data-i18n="about.body2">
+        스타트업 PO부터 글로벌 기업 UX/UI 기획, PM까지 다양한 환경에서 검증된 워크플로우를, 4단계 커리큘럼으로 압축해 전달합니다.
+      </p>
+    </div>
+  </div>
+
+  <!-- Career timeline -->
+  <div class="career">
+    <div class="career__item">
+      <span class="career__period">Previous</span>
+      <div class="career__content">
+        <strong>Senior Project Manager</strong>
+        <span>Application Development &amp; Innovation · IBM</span>
+      </div>
+    </div>
+    <div class="career__item">
+      <span class="career__period">Previous</span>
+      <div class="career__content">
+        <strong>UX/UI 기획</strong>
+        <span>AI Technology Team · Hyundai AutoEver</span>
+      </div>
+    </div>
+    <div class="career__item">
+      <span class="career__period">Lecturer → Present</span>
+      <div class="career__content">
+        <strong>CareAX 대표 · 기업 및 정부 기관 출강</strong>
+        <span>Generative AI × Product Workshops</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats ticker -->
+  <div class="stats-ticker" aria-hidden="true">
+    <div class="stats-ticker__track">
+      <span class="stat"><strong>15+</strong> Years · PM &amp; UX</span>
+      <span class="stat"><strong>40+</strong> 기업·대학 강의 세션</span>
+      <span class="stat"><strong>1,200+</strong> 누적 수강생</span>
+      <span class="stat"><strong>4.9/5</strong> 평균 만족도</span>
+      <span class="stat"><strong>15+</strong> Years · PM &amp; UX</span>
+      <span class="stat"><strong>40+</strong> 기업·대학 강의 세션</span>
+      <span class="stat"><strong>1,200+</strong> 누적 수강생</span>
+      <span class="stat"><strong>4.9/5</strong> 평균 만족도</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ CURRICULUM ══════════════════════════════ -->
+<section id="curriculum" class="curriculum section">
+  <div class="section__label">
+    <span class="section__num">02 / Curriculum</span>
+    <span class="section__tag">4 Programs</span>
+  </div>
+
+  <div class="curriculum__heading-row">
+    <h2 class="section__heading" data-i18n="curriculum.heading">
+      한 학기를 한 워크숍에.<br />
+      AX 커리큘럼.
+    </h2>
+    <p class="curriculum__sub" data-i18n="curriculum.sub">
+      기획·디자인·PM 직군이 AI 와 함께 일하는 방식을 4단계로 재설계합니다. 단발성 특강부터 8주 인텐시브까지, 조직 단계에 맞게 결합 가능합니다.
+    </p>
+  </div>
+
+  <!-- Filter tabs -->
+  <div class="curriculum__filters" role="tablist" aria-label="커리큘럼 필터">
+    <button class="filter-btn active" data-filter="all"        role="tab" aria-selected="true"  data-i18n="filter.all">All</button>
+    <button class="filter-btn"        data-filter="foundation" role="tab" aria-selected="false" data-i18n="filter.foundation">Foundation</button>
+    <button class="filter-btn"        data-filter="practice"   role="tab" aria-selected="false" data-i18n="filter.practice">Practice</button>
+    <button class="filter-btn"        data-filter="leadership" role="tab" aria-selected="false" data-i18n="filter.leadership">Leadership</button>
+    <button class="filter-btn"        data-filter="custom"     role="tab" aria-selected="false" data-i18n="filter.custom">Custom</button>
+  </div>
+
+  <!-- Cards -->
+  <div class="curriculum__grid">
+
+    <!-- AX·101 -->
+    <article class="course-card fade-in" data-category="foundation">
+      <div class="course-card__header">
+        <span class="course-card__badge">AX · 101</span>
+        <span class="course-card__level" data-i18n="course.foundation">Foundation</span>
+      </div>
+      <h3 class="course-card__title" data-i18n="ax101.title">AI 툴 기반<br>UX/기획 실무 입문</h3>
+      <p class="course-card__meta">4 weeks · 16 hours</p>
+      <p class="course-card__desc" data-i18n="ax101.desc">
+        ChatGPT · Claude · Figma를 처음 잡는 취준생을 위한 실무 출발점. AI 툴로 리서치하고, Figma로 화면을 그리고, 기획서 한 장을 직접 완성합니다.
+      </p>
+      <ol class="course-card__timeline">
+        <li><span class="tl-num">01</span><span class="tl-topic" data-i18n="ax101.w1">AI 툴 셋업 &amp; 프롬프트 기초</span><span class="tl-hours">3h</span></li>
+        <li><span class="tl-num">02</span><span class="tl-topic" data-i18n="ax101.w2">Figma 기초 — 와이어프레임 실습</span><span class="tl-hours">4h</span></li>
+        <li><span class="tl-num">03</span><span class="tl-topic" data-i18n="ax101.w3">AI로 사용자 리서치 &amp; 페르소나 작성</span><span class="tl-hours">4h</span></li>
+        <li><span class="tl-num">04</span><span class="tl-topic" data-i18n="ax101.w4">한 장 기획서 완성 &amp; 피드백</span><span class="tl-hours">5h</span></li>
+      </ol>
+      <div class="course-card__tags">
+        <span class="tag" data-i18n="tag.beginner">입문</span>
+        <span class="tag" data-i18n="tag.jobseeker">취준생</span>
+        <span class="tag">Online</span>
+      </div>
+      <a href="#contact" class="course-card__cta" data-i18n="cta.enroll">Enroll</a>
+    </article>
+
+    <!-- AX·201 -->
+    <article class="course-card fade-in" data-category="practice">
+      <div class="course-card__header">
+        <span class="course-card__badge">AX · 201</span>
+        <span class="course-card__level" data-i18n="course.practice">Practice</span>
+      </div>
+      <h3 class="course-card__title" data-i18n="ax201.title">AI 플랫폼<br>기획서 작성 실습</h3>
+      <p class="course-card__meta">4 weeks · 16 hours · <em data-i18n="label.popular">Most popular</em></p>
+      <p class="course-card__desc" data-i18n="ax201.desc">
+        실제 AI 서비스 기획서를 처음부터 끝까지 작성하는 코스. 서비스 정의 → IA 설계 → 화면 기획 → Figma 프로토타입까지, 포트폴리오에 바로 넣을 수 있는 산출물을 만듭니다.
+      </p>
+      <ol class="course-card__timeline">
+        <li><span class="tl-num">01</span><span class="tl-topic" data-i18n="ax201.w1">AI 서비스 콘셉 정의 &amp; 유즈케이스 매핑</span><span class="tl-hours">3h</span></li>
+        <li><span class="tl-num">02</span><span class="tl-topic" data-i18n="ax201.w2">IA · 플로우차트 설계</span><span class="tl-hours">3h</span></li>
+        <li><span class="tl-num">03</span><span class="tl-topic" data-i18n="ax201.w3">Figma 화면 기획 &amp; UI 컴포넌트 구성</span><span class="tl-hours">5h</span></li>
+        <li><span class="tl-num">04</span><span class="tl-topic" data-i18n="ax201.w4">기획서 문서화 &amp; 프로토타입 완성</span><span class="tl-hours">5h</span></li>
+      </ol>
+      <div class="course-card__tags">
+        <span class="tag" data-i18n="tag.practical">실무형</span>
+        <span class="tag" data-i18n="tag.portfolio">포트폴리오</span>
+        <span class="tag">Hybrid</span>
+      </div>
+      <a href="#contact" class="course-card__cta" data-i18n="cta.enroll">Enroll</a>
+    </article>
+
+    <!-- AX·301 -->
+    <article class="course-card fade-in" data-category="practice">
+      <div class="course-card__header">
+        <span class="course-card__badge">AX · 301</span>
+        <span class="course-card__level" data-i18n="course.practice">Practice</span>
+      </div>
+      <h3 class="course-card__title" data-i18n="ax301.title">AI 관리자 사이트<br>기획 &amp; 프론트 구현</h3>
+      <p class="course-card__meta">6 weeks · 24 hours · <em data-i18n="label.buildalong">Build-along</em></p>
+      <p class="course-card__desc" data-i18n="ax301.desc">
+        AI 플랫폼 관리자 페이지를 직접 기획하고 구현까지 완성하는 집중 코스. Figma 디자인 시스템을 만들고, 바이브코딩으로 실제 동작하는 프론트를 배포합니다.
+      </p>
+      <ol class="course-card__timeline">
+        <li><span class="tl-num">01</span><span class="tl-topic" data-i18n="ax301.w1">관리자 사이트 요구사항 &amp; 화면 정의서</span><span class="tl-hours">4h</span></li>
+        <li><span class="tl-num">02</span><span class="tl-topic" data-i18n="ax301.w2">Figma 디자인 시스템 &amp; 고화질 목업</span><span class="tl-hours">5h</span></li>
+        <li><span class="tl-num">03</span><span class="tl-topic" data-i18n="ax301.w3">바이브코딩으로 UI 구현 (Cursor · v0)</span><span class="tl-hours">6h</span></li>
+        <li><span class="tl-num">04</span><span class="tl-topic" data-i18n="ax301.w4">데이터 연동 &amp; 관리자 기능 구현</span><span class="tl-hours">5h</span></li>
+        <li><span class="tl-num">05</span><span class="tl-topic" data-i18n="ax301.w5">배포 · 테스트 · 포트폴리오 정리</span><span class="tl-hours">4h</span></li>
+      </ol>
+      <div class="course-card__tags">
+        <span class="tag" data-i18n="tag.realproject">실전 프로젝트</span>
+        <span class="tag">Figma</span>
+        <span class="tag" data-i18n="tag.vibecoding">바이브코딩</span>
+        <span class="tag">Cohort 12명</span>
+      </div>
+      <a href="#contact" class="course-card__cta" data-i18n="cta.enroll">Enroll</a>
+    </article>
+
+    <!-- AX·401 -->
+    <article class="course-card fade-in" data-category="leadership">
+      <div class="course-card__header">
+        <span class="course-card__badge">AX · 401</span>
+        <span class="course-card__level" data-i18n="course.leadership">Leadership</span>
+      </div>
+      <h3 class="course-card__title" data-i18n="ax401.title">취업 포트폴리오<br>완성 집중반</h3>
+      <p class="course-card__meta">2 weeks · <span data-i18n="label.intensive">인텐시브</span></p>
+      <p class="course-card__desc" data-i18n="ax401.desc">
+        기획 · UX · PM 직군 취업을 목표로 한 마무리 코스. 101–301 산출물을 포트폴리오로 다듬고, 자기소개서 · 면접 답변까지 AI 툴로 함께 준비합니다.
+      </p>
+      <ol class="course-card__timeline">
+        <li><span class="tl-num">01</span><span class="tl-topic" data-i18n="ax401.w1">포트폴리오 구조 설계 &amp; 케이스 스터디 작성</span><span class="tl-hours">4h</span></li>
+        <li><span class="tl-num">02</span><span class="tl-topic" data-i18n="ax401.w2">Figma 포트폴리오 사이트 제작</span><span class="tl-hours">4h</span></li>
+        <li><span class="tl-num">03</span><span class="tl-topic" data-i18n="ax401.w3">AI로 자기소개서 &amp; 직무 역량 정리</span><span class="tl-hours">3h</span></li>
+        <li><span class="tl-num">04</span><span class="tl-topic" data-i18n="ax401.w4">모의 면접 &amp; 피드백 세션</span><span class="tl-hours">3h</span></li>
+      </ol>
+      <div class="course-card__tags">
+        <span class="tag" data-i18n="tag.jobready">취업 준비</span>
+        <span class="tag" data-i18n="tag.oneonone">1:1 피드백</span>
+        <span class="tag" data-i18n="tag.custom">맞춤형</span>
+      </div>
+      <a href="#contact" class="course-card__cta" data-i18n="cta.inquire">Inquire</a>
+    </article>
+
+  </div>
+</section>
+
+<!-- ════════════════════════════ METHOD ════════════════════════════════ -->
+<section id="method" class="method section">
+  <div class="section__label">
+    <span class="section__num">03 / Method</span>
+    <span class="section__tag">How we learn</span>
+  </div>
+
+  <h2 class="section__heading" data-i18n="method.heading">
+    일방향 강의 X.<br />
+    참여형 실무 강의 O.
+  </h2>
+  <p class="method__sub" data-i18n="method.sub">
+    슬라이드 100장이 아닌, 매 세션 결과물 하나. 15년차 IT 실무 경험을 살린 4단계 학습 사이클로 진행합니다.
+  </p>
+
+  <div class="method__steps">
+    <div class="method__step fade-in">
+      <span class="step__num">Step 01</span>
+      <h3 class="step__title" data-i18n="step1.title">Diagnose</h3>
+      <p class="step__desc" data-i18n="step1.desc">현재 워크플로우를 매핑하고 AI 가 실제로 가치를 더할 지점을 찾습니다.</p>
+    </div>
+    <div class="method__step fade-in">
+      <span class="step__num">Step 02</span>
+      <h3 class="step__title" data-i18n="step2.title">Prototype</h3>
+      <p class="step__desc" data-i18n="step2.desc">아이디어를 즉시 작동하는 결과물로. 매 세션 살아있는 산출물을 만듭니다.</p>
+    </div>
+    <div class="method__step fade-in">
+      <span class="step__num">Step 03</span>
+      <h3 class="step__title" data-i18n="step3.title">Validate</h3>
+      <p class="step__desc" data-i18n="step3.desc">AI 결과를 검증하는 루틴을 코호트 내에서 직접 돌려봅니다.</p>
+    </div>
+    <div class="method__step fade-in">
+      <span class="step__num">Step 04</span>
+      <h3 class="step__title" data-i18n="step4.title">Ship</h3>
+      <p class="step__desc" data-i18n="step4.desc">강의실 안에서 끝나지 않습니다. 본인의 실제 업무에 안착시키는 30일 플랜으로 마무리.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════ VOICES ════════════════════════════════ -->
+<section id="voices" class="voices section">
+  <div class="section__label">
+    <span class="section__num">04 / Voices</span>
+    <span class="section__tag">From cohorts</span>
+  </div>
+
+  <h2 class="section__heading" data-i18n="voices.heading">
+    현장의 PM 들이<br />
+    남긴 말.
+  </h2>
+
+  <div class="voices__grid">
+    <blockquote class="voice-card fade-in">
+      <p data-i18n="voice1.text">"AI 도구를 배우는 줄 알았는데, 일하는 방식 자체가 바뀌었습니다. 4주 만에 팀의 리서치 리드타임이 절반."</p>
+      <footer>
+        <strong>Junseo P.</strong>
+        <span data-i18n="voice1.role">Product Lead · Fintech</span>
+      </footer>
+    </blockquote>
+    <blockquote class="voice-card fade-in">
+      <p data-i18n="voice2.text">"PM 출신이 가르치는 AX 라서 강의 내용이 우리 회의실 풍경과 같았습니다. 다음날부터 바로 적용했어요."</p>
+      <footer>
+        <strong>Hyemin K.</strong>
+        <span data-i18n="voice2.role">UX Manager · Mobility</span>
+      </footer>
+    </blockquote>
+  </div>
+</section>
+
+<!-- ════════════════════════════ CONTACT ═══════════════════════════════ -->
+<section id="contact" class="contact section">
+  <div class="section__label">
+    <span class="section__num">05 / Contact</span>
+    <span class="section__tag">2026 Cohort</span>
+  </div>
+
+  <h2 class="section__heading" data-i18n="contact.heading">
+    Let's build<br />
+    your AX team.
+  </h2>
+  <p class="contact__sub" data-i18n="contact.sub">
+    2026년 상반기 기업/대학 출강, 비공개 코호트 (8–16명) 일정을 받고 있습니다. 조직의 AX 성숙도에 맞춰 커리큘럼을 조립해 드립니다.
+  </p>
+
+  <form class="contact-form" id="contactForm" novalidate>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="name" data-i18n="form.name">이름 / Name</label>
+        <input type="text" id="name" name="name" required placeholder="홍길동 / Hong Gildong" />
+      </div>
+      <div class="form-group">
+        <label for="email" data-i18n="form.email">이메일 / Email</label>
+        <input type="email" id="email" name="email" required placeholder="you@company.com" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="org" data-i18n="form.org">소속 / Organization</label>
+      <input type="text" id="org" name="org" placeholder="회사명 또는 대학명" />
+    </div>
+    <div class="form-group">
+      <label for="message" data-i18n="form.message">문의 내용 / Message</label>
+      <textarea id="message" name="message" rows="5" required placeholder="강의 목적, 인원, 원하는 일정을 알려주세요."></textarea>
+    </div>
+    <button type="submit" class="form-submit" data-i18n="form.submit">문의 보내기</button>
+    <p class="form-status" id="formStatus" aria-live="polite"></p>
+  </form>
+
+  <a href="mailto:careax.rana@gmail.com" class="contact__direct" data-i18n="contact.direct">Book a workshop</a>
+</section>
+
+<!-- ════════════════════════════ FOOTER ════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer__inner">
+    <p class="footer__copy">© 2026 CareAX · Rana Lee · 이라나</p>
+    <div class="footer__links">
+      <a href="mailto:careax.rana@gmail.com">careax.rana@gmail.com</a>
+      <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://brunch.co.kr" target="_blank" rel="noopener">Brunch</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════════════ VERSION BADGE ══════════════════════════════ -->
+<button class="version-badge" id="versionBadge" aria-label="버전 정보 보기">
+  v1.0.0
+</button>
+
+<!-- ══════════════════════ VERSION MODAL ══════════════════════════════ -->
+<div class="version-modal" id="versionModal" role="dialog" aria-modal="true" aria-labelledby="versionModalTitle" aria-hidden="true">
+  <div class="version-modal__backdrop" id="versionModalBackdrop"></div>
+  <div class="version-modal__panel">
+    <button class="version-modal__close" id="versionModalClose" aria-label="닫기">&times;</button>
+    <h2 class="version-modal__title" id="versionModalTitle">Release Info</h2>
+    <div id="versionModalContent"><!-- populated by version-viewer.js --></div>
+  </div>
+</div>
+
+<script src="js/i18n.js"></script>
+<script src="js/main.js"></script>
+<script src="js/version-viewer.js"></script>
+<script src="js/db-handler.js"></script>
+</body>
+</html>
