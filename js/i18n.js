@@ -123,6 +123,19 @@ const DICT = {
     'form.org':        '소속 / Organization',
     'form.message':    '문의 내용 / Message',
     'form.submit':     '문의 보내기',
+
+    /* Register Form (New Specs) */
+    'form.registerTitle':    '수강신청',
+    'form.registerSub':      '수강을 원하시는 코스를 선택하고 필수 정보들을 입력해 주세요. 접수 후 빠른 시일 내에 안내 메일을 전달 드립니다.',
+    'form.regCourse':        '신청 코스 / Select Course',
+    'form.selectPlaceholder':'코스를 선택해 주세요',
+    'form.regName':          '이름 / Name',
+    'form.regEmail':         '이메일 / Email',
+    'form.regPhone':         '연락처 / Phone',
+    'form.regNotes':         '신청 경로 및 남기실 말씀 / Message',
+    'form.regSubmit':        '수강 신청하기',
+    'modal.regSuccessTitle': '수강신청 완료',
+    'modal.regSuccessDesc':  '수강신청이 성공적으로 접수되었습니다.<br>입력하신 이메일로 안내 메일이 발송됩니다.',
   },
 
   en: {
@@ -244,6 +257,19 @@ const DICT = {
     'form.org':        'Organization',
     'form.message':    'Message',
     'form.submit':     'Send Inquiry',
+
+    /* Register Form (New Specs) */
+    'form.registerTitle':    'Course Registration',
+    'form.registerSub':      'Select your course and fill in required fields. We\'ll send you an invitation email shortly.',
+    'form.regCourse':        'Select Course',
+    'form.selectPlaceholder':'Please select a course',
+    'form.regName':          'Name',
+    'form.regEmail':         'Email',
+    'form.regPhone':         'Phone',
+    'form.regNotes':         'Message',
+    'form.regSubmit':        'Register Course',
+    'modal.regSuccessTitle': 'Registration Complete',
+    'modal.regSuccessDesc':  'Your application has been successfully submitted.<br>An invitation email will be sent to your address.',
   }
 };
 

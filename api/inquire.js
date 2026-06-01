@@ -1,17 +1,7 @@
 /**
- * api/inquire.js — Serverless function (Vercel/Netlify)
- * Neon DB 적재 + 이메일 발송
- *
- * 환경 변수:
- *   DATABASE_URL  — Neon PostgreSQL 연결 문자열
- *   SMTP_HOST     — SMTP 서버 (기본: smtp.gmail.com)
- *   SMTP_PORT     — SMTP 포트 (기본: 587)
- *   SMTP_USER     — 발신 이메일 계정
- *   SMTP_PASS     — 앱 비밀번호 or SMTP 패스워드
- *   NOTIFY_EMAIL  — 알림 수신 이메일 (careax.rana@gmail.com)
+ * api/inquire.js — Vercel Serverless Function
+ * Supabase 적재 성공 후 담당자 알림 이메일 발송
  */
-
-import { neon } from '@neondatabase/serverless';
 import nodemailer from 'nodemailer';
 
 export default async function handler(req, res) {
@@ -31,36 +21,7 @@ export default async function handler(req, res) {
   if (!name || !email || !message) {
     return res.status(400).json({ error: 'name, email, message are required.' });
   }
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    return res.status(400).json({ error: 'Invalid email address.' });
-  }
 
-  /* ── 1. Neon DB 적재 ──────────────────────────────────────────── */
-  try {
-    const sql = neon(process.env.DATABASE_URL);
-
-    // 테이블이 없으면 생성
-    await sql`
-      CREATE TABLE IF NOT EXISTS inquiries (
-        id         SERIAL PRIMARY KEY,
-        name       TEXT        NOT NULL,
-        email      TEXT        NOT NULL,
-        org        TEXT,
-        message    TEXT        NOT NULL,
-        created_at TIMESTAMPTZ DEFAULT NOW()
-      )
-    `;
-
-    await sql`
-      INSERT INTO inquiries (name, email, org, message)
-      VALUES (${name}, ${email}, ${org || null}, ${message})
-    `;
-  } catch (dbErr) {
-    console.error('[inquire] DB error:', dbErr);
-    return res.status(500).json({ error: 'DB write failed. Please try again.' });
-  }
-
-  /* ── 2. 이메일 발송 ───────────────────────────────────────────── */
   try {
     const transporter = nodemailer.createTransport({
       host:   process.env.SMTP_HOST || 'smtp.gmail.com',
@@ -77,11 +38,11 @@ export default async function handler(req, res) {
     await transporter.sendMail({
       from:    `"CareAX 문의" <${process.env.SMTP_USER}>`,
       to:      notifyEmail,
-      subject: `[CareAX 문의] ${name} (${email})`,
+      subject: `[CareAX 문의알림] ${name}님으로부터 새로운 문의가 접수되었습니다.`,
       text:    `이름: ${name}\n이메일: ${email}\n소속: ${org || '-'}\n\n${message}`,
       html: `
         <div style="font-family:sans-serif;max-width:560px;margin:0 auto;color:#1a1a1a">
-          <h2 style="color:#c9a84c;margin-bottom:1rem">CareAX 새 문의</h2>
+          <h2 style="color:#A855F7;margin-bottom:1rem">CareAX 문의 접수</h2>
           <table cellpadding="6" style="width:100%;border-collapse:collapse">
             <tr><td style="font-weight:600;width:80px">이름</td><td>${name}</td></tr>
             <tr><td style="font-weight:600">이메일</td><td><a href="mailto:${email}">${email}</a></td></tr>
@@ -93,10 +54,10 @@ export default async function handler(req, res) {
         </div>
       `,
     });
-  } catch (mailErr) {
-    // DB 저장은 성공했으므로 메일 실패는 경고만 로깅
-    console.warn('[inquire] Email send failed:', mailErr);
-  }
 
-  return res.status(200).json({ message: '문의가 접수되었습니다. 곧 연락드리겠습니다.' });
+    return res.status(200).json({ message: '알림 이메일이 발송되었습니다.' });
+  } catch (mailErr) {
+    console.error('[inquire] Email send failed:', mailErr);
+    return res.status(500).json({ error: 'Failed to send notification email.' });
+  }
 }
