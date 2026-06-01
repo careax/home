@@ -93,7 +93,7 @@ const DICT = {
 
     /* CTA */
     'cta.enroll':  'Enroll',
-    'cta.inquire': 'Inquire',
+    'cta.inquire': 'Register',
 
     /* Method */
     'method.heading': '일방향 강의 X.\n참여형 실무 강의 O.',
@@ -227,7 +227,7 @@ const DICT = {
 
     /* CTA */
     'cta.enroll':  'Enroll',
-    'cta.inquire': 'Inquire',
+    'cta.inquire': 'Register',
 
     /* Method */
     'method.heading': 'No one-way lectures.\nParticipatory, hands-on learning.',

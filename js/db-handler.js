@@ -203,6 +203,91 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
+  // ─── Popup Register Form (팝업 수강신청) ───
+  const popupRegisterForm   = document.getElementById('popupRegisterForm');
+  const popupRegisterStatus = document.getElementById('popupRegisterStatus');
+  const popupRegisterSubmit = popupRegisterForm?.querySelector('.form-submit');
+
+  if (popupRegisterForm) {
+    popupRegisterForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const data = {
+        course_name:  popupRegisterForm.course_name.value,
+        student_name: popupRegisterForm.student_name.value.trim(),
+        email:        popupRegisterForm.email.value.trim(),
+        phone:        popupRegisterForm.phone.value.trim(),
+        notes:        popupRegisterForm.notes.value.trim(),
+      };
+
+      const lang = localStorage.getItem('careax_lang') || 'ko';
+
+      // Validation
+      if (!data.course_name || !data.student_name || !data.email || !data.phone) {
+        showStatus(popupRegisterStatus, lang === 'en' ? 'Please fill in all required fields.' : '필수 항목을 모두 입력해 주세요.', 'error');
+        return;
+      }
+      if (!isValidEmail(data.email)) {
+        showStatus(popupRegisterStatus, lang === 'en' ? 'Please enter a valid email address.' : '올바른 이메일 주소를 입력해 주세요.', 'error');
+        return;
+      }
+      if (!isValidPhone(data.phone)) {
+        showStatus(popupRegisterStatus, lang === 'en' ? 'Please match the format 010-XXXX-XXXX.' : '연락처 형식(010-XXXX-XXXX)을 맞춰 주세요.', 'error');
+        return;
+      }
+
+      setLoading(popupRegisterSubmit, true, lang, true);
+      showStatus(popupRegisterStatus, '', '');
+
+      try {
+        if (!supabase) throw new Error('Supabase client not initialized');
+
+        // Supabase registrations 테이블 직접 적재
+        const { error } = await supabase
+          .from('registrations')
+          .insert([
+            {
+              course_name: data.course_name,
+              student_name: data.student_name,
+              email: data.email,
+              phone: data.phone,
+              notes: data.notes || null
+            }
+          ]);
+
+        if (error) throw error;
+
+        // Vercel Serverless Function 호출 (수강신청 확인 메일 알림)
+        const emailRes = await fetch('/api/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+
+        if (emailRes.ok) {
+          // 팝업 폼 모달 닫기
+          if (window.closeRegFormModal) {
+            window.closeRegFormModal();
+          }
+          // 성공 완료 모달 출력
+          if (registerModal) {
+            registerModal.classList.add('open');
+            registerModal.setAttribute('aria-hidden', 'false');
+          }
+          popupRegisterForm.reset();
+          showStatus(popupRegisterStatus, '', '');
+        } else {
+          showStatus(popupRegisterStatus, lang === 'en' ? 'Registration saved, but confirmation email failed.' : '수강신청은 완료되었으나 확인 메일 발송에 실패했습니다.', 'success');
+        }
+      } catch (err) {
+        console.error('[Popup Register Submit Error]:', err);
+        showStatus(popupRegisterStatus, lang === 'en' ? 'An error occurred. Please try again.' : '오류가 발생했습니다. 잠시 후 다시 시도해 주세요.', 'error');
+      } finally {
+        setLoading(popupRegisterSubmit, false, lang, true);
+      }
+    });
+  }
+
   // ─── 공통 헬퍼 함수 ───
   function showStatus(targetEl, msg, type) {
     if (!targetEl) return;

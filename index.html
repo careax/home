@@ -741,6 +741,48 @@
   </div>
 </div>
 
+<!-- ══════════════════════ REGISTRATION FORM MODAL (NEW) ══════════════════════ -->
+<div class="version-modal" id="registerFormModal" role="dialog" aria-modal="true" aria-labelledby="registerFormModalTitle" aria-hidden="true">
+  <div class="version-modal__backdrop" id="registerFormModalBackdrop"></div>
+  <div class="version-modal__panel" id="registerFormModalPanel" style="max-width: 600px;">
+    <button class="version-modal__close" id="registerFormModalClose" aria-label="닫기">&times;</button>
+    <h2 class="version-modal__title" id="registerFormModalTitle" data-i18n="form.registerTitle">Course Registration</h2>
+    
+    <form class="contact-form" id="popupRegisterForm" novalidate style="margin-top: 24px;">
+      <div class="form-grid">
+        <div class="field full">
+          <label for="popupRegCourse" data-i18n="form.regCourse">신청 코스 / Select Course</label>
+          <select id="popupRegCourse" name="course_name" required style="background: var(--bg-3); border: 1px solid var(--line-2); color: #fff; font-family: var(--kr); font-size: 15px; padding: 14px 16px; outline: none; transition: border-color .25s; border-radius: 4px; width: 100%;">
+            <option value="" disabled selected data-i18n="form.selectPlaceholder">코스를 선택해 주세요</option>
+            <option value="AX · 101">AX · 101 (UX/기획 실무 입문)</option>
+            <option value="AX · 201">AX · 201 (AI 플랫폼 기획서 실습)</option>
+            <option value="AX · 301">AX · 301 (관리자 사이트 기획 &amp; 프론트)</option>
+            <option value="AX · 401">AX · 401 (취업 포트폴리오 완성반)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="popupRegName" data-i18n="form.regName">이름 / Name</label>
+          <input type="text" id="popupRegName" name="student_name" required placeholder="홍길동 / Hong Gildong" />
+        </div>
+        <div class="field">
+          <label for="popupRegEmail" data-i18n="form.regEmail">이메일 / Email</label>
+          <input type="email" id="popupRegEmail" name="email" required placeholder="you@company.com" />
+        </div>
+        <div class="field full">
+          <label for="popupRegPhone" data-i18n="form.regPhone">연락처 / Phone</label>
+          <input type="tel" id="popupRegPhone" name="phone" required placeholder="010-XXXX-XXXX" />
+        </div>
+        <div class="field full">
+          <label for="popupRegNotes" data-i18n="form.regNotes">신청 경로 및 남기실 말씀 / Message</label>
+          <textarea id="popupRegNotes" name="notes" rows="4" placeholder="참여 동기 또는 강사에게 하고 싶은 말을 입력해 주세요."></textarea>
+        </div>
+      </div>
+      <button type="submit" class="form-submit" data-i18n="form.regSubmit">수강 신청하기</button>
+      <p class="form-msg" id="popupRegisterStatus" aria-live="polite"></p>
+    </form>
+  </div>
+</div>
+
 <!-- ══════════════════════ REGISTRATION SUCCESS MODAL ══════════════════════ -->
 <div class="version-modal" id="registerModal" role="dialog" aria-modal="true" aria-hidden="true">
   <div class="version-modal__backdrop" id="registerModalBackdrop"></div>

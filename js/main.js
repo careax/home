@@ -133,21 +133,37 @@ document.addEventListener('DOMContentLoaded', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
-  /* ─── Course CTA $\rightarrow$ Register 연동 ──────────────────────────────── */
+  /* ─── Course CTA ➔ Register 연동 (팝업 모달 오픈) ─────────────────── */
+  const regFormModal = document.getElementById('registerFormModal');
+  const popupRegCourseSelect = document.getElementById('popupRegCourse');
+  const regFormModalClose = document.getElementById('registerFormModalClose');
+  const regFormModalBackdrop = document.getElementById('registerFormModalBackdrop');
+  
+  const closeRegFormModal = () => {
+    regFormModal?.classList.remove('open');
+    regFormModal?.setAttribute('aria-hidden', 'true');
+  };
+  
+  regFormModalClose?.addEventListener('click', closeRegFormModal);
+  regFormModalBackdrop?.addEventListener('click', closeRegFormModal);
+  
+  // 글로벌 스코프에 함수 노출시켜 db-handler.js에서 제출 성공 후 팝업 닫을 수 있게 조치
+  window.closeRegFormModal = closeRegFormModal;
+
   document.querySelectorAll('[data-course-select]').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
       const course = btn.getAttribute('data-course-select');
-      const regCourseSelect = document.getElementById('regCourse');
-      if (regCourseSelect && course) {
-        regCourseSelect.value = course;
+      
+      // 팝업 폼 내의 코스 선택 필드 업데이트
+      if (popupRegCourseSelect && course) {
+        popupRegCourseSelect.value = course;
       }
-      const regSection = document.getElementById('register');
-      if (regSection) {
-        window.scrollTo({
-          top: regSection.getBoundingClientRect().top + window.scrollY - 72,
-          behavior: 'smooth'
-        });
+      
+      // 팝업 폼 모달 오픈
+      if (regFormModal) {
+        regFormModal.classList.add('open');
+        regFormModal.setAttribute('aria-hidden', 'false');
       }
     });
   });
