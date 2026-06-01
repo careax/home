@@ -183,12 +183,12 @@ body::before {
 @keyframes statsTick { to { transform:translateX(-50%); } }
 
 /* ════════════════════════════ CURRICULUM & REGISTER (WHITE MODE) ════════════════════════════ */
-.curriculum, #register { background: #ffffff !important; color: #111111 !important; border-bottom: 1px solid rgba(0,0,0,0.08) !important; }
+.curriculum, #register { background: #fafaf8 !important; color: #0a0a0a !important; border-bottom: 1px solid rgba(0,0,0,0.08) !important; }
 .curriculum .eyebrow, #register .eyebrow { color: #6b6b6b !important; }
-.curriculum .eyebrow .num, #register .eyebrow .num { border-color: rgba(0,0,0,0.15) !important; color: #111111 !important; }
-.curriculum .h-section, #register .h-section { color: #111111 !important; }
+.curriculum .eyebrow .num, #register .eyebrow .num { border-color: rgba(0,0,0,0.15) !important; color: #0a0a0a !important; }
+.curriculum .h-section, #register .h-section { color: #0a0a0a !important; }
 .curriculum .h-section .grad, #register .h-section .grad { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.curriculum .lede, #register .lede { color: #444444 !important; }
+.curriculum .lede, #register .lede { color: #333333 !important; }
 
 /* Curriculum Tabs */
 .curriculum .curr-tabs { display:flex; gap:8px; margin-top:56px; flex-wrap:wrap; }
