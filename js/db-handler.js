@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       try {
         if (!supabase) throw new Error('Supabase client not initialized');
 
-        // Supabase inquiries 테이블 직접 적재
+        // 1. Supabase inquiries 테이블 직접 적재
         const { error } = await supabase
           .from('inquiries')
           .insert([
@@ -63,29 +63,46 @@ document.addEventListener('DOMContentLoaded', async () => {
               name: data.name,
               email: data.email,
               organization: data.org || null,
-              message: data.message
+              message: data.message,
+              status: 'Pending'
             }
           ]);
 
         if (error) throw error;
 
-        // Vercel Serverless Function 호출 (Nodemailer 이메일 알림 전송) - 오류 방어 감싸기
+        // 2. Google Sheets 적재 (GAS Web App 호출)
+        const gasUrl = "https://script.google.com/macros/s/AKfycbxAq_HHNG075YdZ2eSAIteKxzYYmEgc2TUAXF5MWULVROAyq6mbFPBSHRWDh7kjCUiCHQ/exec";
         try {
-          const emailRes = await fetch('https://home-careguide-s-projects.vercel.app/api/inquire', {
+          await fetch(gasUrl, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              type: 'inquiry',
+              name: data.name,
+              email: data.email,
+              org: data.org || '',
+              message: data.message
+            })
+          });
+          console.log('[Google Sheets] Inquiry data appended');
+        } catch (sheetErr) {
+          console.warn('[Google Sheets] Google Sheets logging failed:', sheetErr);
+        }
+
+        // 3. Vercel Serverless Function 호출 (이메일 알림 전송)
+        try {
+          await fetch('https://home-careguide-s-projects.vercel.app/api/inquire', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
           });
-          if (emailRes.ok) {
-            console.log('[Email] Inquiry notification sent');
-          } else {
-            console.warn('[Email] Inquiry notification failed status:', emailRes.status);
-          }
+          console.log('[Email] Inquiry notification sent');
         } catch (mailErr) {
           console.warn('[Email] Inquiry notification service unavailable:', mailErr);
         }
 
-        // DB 적재 성공 완료 처리
+        // DB 및 시트 적재 성공 완료 처리
         showStatus(contactStatus, lang === 'en' ? 'Inquiry submitted successfully! We will contact you soon 🙏' : '문의가 접수되었습니다. 곧 연락드리겠습니다 🙏', 'success');
         contactForm.reset();
       } catch (err) {
@@ -97,16 +114,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
-  // ─── Register Form (수강신청) ───
-  const registerForm   = document.getElementById('registerForm');
-  const registerStatus = document.getElementById('registerStatus');
-  const registerSubmit = registerForm?.querySelector('.form-submit');
-  const registerModal  = document.getElementById('registerModal');
+  // ─── Register Form (수강신청 & 팝업 폼 통합) ───
+  const registerForm = document.getElementById('registerForm');
+  const popupRegisterForm = document.getElementById('popupRegisterForm');
 
   if (registerForm) {
-    registerForm.addEventListener('submit', async (e) => {
+    registerForm.addEventListener('submit', (e) => {
       e.preventDefault();
-
+      const submitEl = registerForm.querySelector('.form-submit');
       const data = {
         course_name:  registerForm.course_name.value,
         student_name: registerForm.student_name.value.trim(),
@@ -114,85 +129,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         phone:        registerForm.phone.value.trim(),
         notes:        registerForm.notes.value.trim(),
       };
-
-      const lang = localStorage.getItem('careax_lang') || 'ko';
-
-      // Validation
-      if (!data.course_name || !data.student_name || !data.email || !data.phone) {
-        showStatus(registerStatus, lang === 'en' ? 'Please fill in all required fields.' : '필수 항목을 모두 입력해 주세요.', 'error');
-        return;
-      }
-      if (!isValidEmail(data.email)) {
-        showStatus(registerStatus, lang === 'en' ? 'Please enter a valid email address.' : '올바른 이메일 주소를 입력해 주세요.', 'error');
-        return;
-      }
-      if (!isValidPhone(data.phone)) {
-        showStatus(registerStatus, lang === 'en' ? 'Please match the format 010-XXXX-XXXX.' : '연락처 형식(010-XXXX-XXXX)을 맞춰 주세요.', 'error');
-        return;
-      }
-
-      setLoading(registerSubmit, true, lang, true);
-      showStatus(registerStatus, '', '');
-
-      try {
-        if (!supabase) throw new Error('Supabase client not initialized');
-
-        // Supabase registrations 테이블 직접 적재
-        const { error } = await supabase
-          .from('registrations')
-          .insert([
-            {
-              course_name: data.course_name,
-              student_name: data.student_name,
-              email: data.email,
-              phone: data.phone,
-              notes: data.notes || null
-            }
-          ]);
-
-        if (error) throw error;
-
-        // Vercel Serverless Function 호출 (수강신청 확인 메일 알림) - 오류 방어 감싸기
-        try {
-          const emailRes = await fetch('https://home-careguide-s-projects.vercel.app/api/register', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-          });
-          if (emailRes.ok) {
-            console.log('[Email] Registration notification sent');
-          } else {
-            console.warn('[Email] Registration notification failed status:', emailRes.status);
-          }
-        } catch (mailErr) {
-          console.warn('[Email] Registration notification service unavailable:', mailErr);
-        }
-
-        // DB 적재 성공 완료 처리 (성공 모달 팝업)
-        if (registerModal) {
-          registerModal.classList.add('open');
-          registerModal.setAttribute('aria-hidden', 'false');
-        }
-        registerForm.reset();
-        showStatus(registerStatus, '', '');
-      } catch (err) {
-        console.error('[Register Submit Error]:', err);
-        showStatus(registerStatus, lang === 'en' ? 'An error occurred. Please try again.' : '오류가 발생했습니다. 잠시 후 다시 시도해 주세요.', 'error');
-      } finally {
-        setLoading(registerSubmit, false, lang, true);
-      }
+      handleRegistration(data, submitEl, registerForm, false);
     });
   }
 
-  // ─── Popup Register Form (팝업 수강신청) ───
-  const popupRegisterForm   = document.getElementById('popupRegisterForm');
-  const popupRegisterStatus = document.getElementById('popupRegisterStatus');
-  const popupRegisterSubmit = popupRegisterForm?.querySelector('.form-submit');
-
   if (popupRegisterForm) {
-    popupRegisterForm.addEventListener('submit', async (e) => {
+    popupRegisterForm.addEventListener('submit', (e) => {
       e.preventDefault();
-
+      const submitEl = popupRegisterForm.querySelector('.form-submit');
       const data = {
         course_name:  popupRegisterForm.course_name.value,
         student_name: popupRegisterForm.student_name.value.trim(),
@@ -200,77 +144,140 @@ document.addEventListener('DOMContentLoaded', async () => {
         phone:        popupRegisterForm.phone.value.trim(),
         notes:        popupRegisterForm.notes.value.trim(),
       };
+      handleRegistration(data, submitEl, popupRegisterForm, true);
+    });
+  }
 
-      const lang = localStorage.getItem('careax_lang') || 'ko';
+  // ─── 공통 수강신청 처리 함수 (결제 -> DB 적재 -> 시트 적재 -> 메일 알림) ───
+  function handleRegistration(data, submitEl, formEl, isPopup) {
+    const lang = localStorage.getItem('careax_lang') || 'ko';
 
-      // Validation
-      if (!data.course_name || !data.student_name || !data.email || !data.phone) {
-        showStatus(popupRegisterStatus, lang === 'en' ? 'Please fill in all required fields.' : '필수 항목을 모두 입력해 주세요.', 'error');
-        return;
-      }
-      if (!isValidEmail(data.email)) {
-        showStatus(popupRegisterStatus, lang === 'en' ? 'Please enter a valid email address.' : '올바른 이메일 주소를 입력해 주세요.', 'error');
-        return;
-      }
-      if (!isValidPhone(data.phone)) {
-        showStatus(popupRegisterStatus, lang === 'en' ? 'Please match the format 010-XXXX-XXXX.' : '연락처 형식(010-XXXX-XXXX)을 맞춰 주세요.', 'error');
-        return;
-      }
+    // 1. 필수값 체크
+    if (!data.course_name || !data.student_name || !data.email || !data.phone) {
+      alert(lang === 'en' ? 'Please fill in all required fields.' : '필수 항목을 모두 입력해 주세요.');
+      return;
+    }
+    if (!isValidEmail(data.email)) {
+      alert(lang === 'en' ? 'Please enter a valid email address.' : '올바른 이메일 주소를 입력해 주세요.');
+      return;
+    }
+    if (!isValidPhone(data.phone)) {
+      alert(lang === 'en' ? 'Please match the format 010-XXXX-XXXX.' : '연락처 형식(010-XXXX-XXXX)을 맞춰 주세요.');
+      return;
+    }
 
-      setLoading(popupRegisterSubmit, true, lang, true);
-      showStatus(popupRegisterStatus, '', '');
+    // 2. 포트원 결제창 호출
+    if (!window.IMP) {
+      console.error('PortOne SDK not loaded');
+      alert(lang === 'en' ? 'Payment module is loading. Please try again in a moment.' : '결제 모듈을 불러오는 중입니다. 잠시 후 다시 시도해 주세요.');
+      return;
+    }
 
-      try {
-        if (!supabase) throw new Error('Supabase client not initialized');
+    const IMP = window.IMP;
+    IMP.init("imp31068472"); // 포트원 테스트 가맹점 식별코드
 
-        // Supabase registrations 테이블 직접 적재
-        const { error } = await supabase
-          .from('registrations')
-          .insert([
-            {
-              course_name: data.course_name,
-              student_name: data.student_name,
-              email: data.email,
-              phone: data.phone,
-              notes: data.notes || null
-            }
-          ]);
+    const coursePrice = getCoursePrice(data.course_name);
 
-        if (error) throw error;
+    setLoading(submitEl, true, lang, true);
 
-        // Vercel Serverless Function 호출 (수강신청 확인 메일 알림) - 오류 방어 감싸기
+    IMP.request_pay({
+      pg: "html5_inicis.INIpayTest",
+      pay_method: "card",
+      merchant_uid: "merchant_" + new Date().getTime(),
+      name: data.course_name,
+      amount: coursePrice,
+      buyer_email: data.email,
+      buyer_name: data.student_name,
+      buyer_tel: data.phone,
+    }, async function (rsp) {
+      if (rsp.success) {
+        // 결제 성공 시 실제 백엔드/DB 파이프라인 작동
         try {
-          const emailRes = await fetch('https://home-careguide-s-projects.vercel.app/api/register', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-          });
-          if (emailRes.ok) {
-            console.log('[Email] Popup registration notification sent');
-          } else {
-            console.warn('[Email] Popup registration notification failed status:', emailRes.status);
-          }
-        } catch (mailErr) {
-          console.warn('[Email] Popup registration notification service unavailable:', mailErr);
-        }
+          if (!supabase) throw new Error('Supabase client not initialized');
 
-        // DB 적재 성공 완료 처리 (성공 모달 팝업 및 입력 팝업 닫기)
-        if (window.closeRegFormModal) {
-          window.closeRegFormModal();
+          // A. Supabase DB 적재 (enrollments 테이블에 적재)
+          const { error } = await supabase
+            .from('enrollments')
+            .insert([
+              {
+                course_name: data.course_name,
+                student_name: data.student_name,
+                email: data.email,
+                phone: data.phone,
+                notes: data.notes || null,
+                status: 'Pending'
+              }
+            ]);
+
+          if (error) throw error;
+
+          // B. Google Sheets 적재 (GAS Web App 호출)
+          const gasUrl = "https://script.google.com/macros/s/AKfycbxAq_HHNG075YdZ2eSAIteKxzYYmEgc2TUAXF5MWULVROAyq6mbFPBSHRWDh7kjCUiCHQ/exec";
+          try {
+            await fetch(gasUrl, {
+              method: 'POST',
+              mode: 'no-cors',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                type: 'registration',
+                course_name: data.course_name,
+                student_name: data.student_name,
+                email: data.email,
+                phone: data.phone,
+                notes: data.notes || ''
+              })
+            });
+            console.log('[Google Sheets] Registration data appended');
+          } catch (sheetErr) {
+            console.warn('[Google Sheets] Google Sheets logging failed:', sheetErr);
+          }
+
+          // C. Vercel Serverless Function 호출 (이메일 알림 전송)
+          try {
+            await fetch('https://home-careguide-s-projects.vercel.app/api/register', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ ...data, price: coursePrice })
+            });
+            console.log('[Email] Registration notification sent');
+          } catch (mailErr) {
+            console.warn('[Email] Email notification failed:', mailErr);
+          }
+
+          // D. UI 완료 성공 모달 표출
+          if (isPopup) {
+            if (window.closeRegFormModal) window.closeRegFormModal();
+          }
+          const registerModal = document.getElementById('registerModal');
+          if (registerModal) {
+            registerModal.classList.add('open');
+            registerModal.setAttribute('aria-hidden', 'false');
+          }
+          formEl.reset();
+
+        } catch (err) {
+          console.error('[Registration Pipeline Error]:', err);
+          alert(lang === 'en' ? 'An error occurred during registration. Please contact the administrator.' : '등록 중 오류가 발생했습니다. 관리자에게 문의해 주세요.');
+        } finally {
+          setLoading(submitEl, false, lang, true);
         }
-        if (registerModal) {
-          registerModal.classList.add('open');
-          registerModal.setAttribute('aria-hidden', 'false');
-        }
-        popupRegisterForm.reset();
-        showStatus(popupRegisterStatus, '', '');
-      } catch (err) {
-        console.error('[Popup Register Submit Error]:', err);
-        showStatus(popupRegisterStatus, lang === 'en' ? 'An error occurred. Please try again.' : '오류가 발생했습니다. 잠시 후 다시 시도해 주세요.', 'error');
-      } finally {
-        setLoading(popupRegisterSubmit, false, lang, true);
+      } else {
+        // 결제 실패 혹은 취소 처리
+        setLoading(submitEl, false, lang, true);
+        alert((lang === 'en' ? 'Payment failed: ' : '결제에 실패하였습니다: ') + rsp.error_msg);
       }
     });
+  }
+
+  // 코스 코드별 수강 금액 매핑 도우미
+  function getCoursePrice(courseId) {
+    const prices = {
+      'AX · 101': 150000,
+      'AX · 201': 200000,
+      'AX · 301': 250000,
+      'AX · 401': 300000
+    };
+    return prices[courseId] || 150000;
   }
 
   // ─── 공통 헬퍼 함수 ───
@@ -284,7 +291,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (!targetEl) return;
     targetEl.disabled   = loading;
     if (isReg) {
-      targetEl.textContent = loading ? (lang === 'en' ? 'Submitting...' : '전송 중…') : (lang === 'en' ? 'Register Course' : '수강 신청하기');
+      targetEl.textContent = loading ? (lang === 'en' ? 'Processing...' : '결제 및 전송 중…') : (lang === 'en' ? 'Register Course' : '수강 신청하기');
     } else {
       targetEl.textContent = loading ? (lang === 'en' ? 'Sending...' : '전송 중…') : (lang === 'en' ? 'Send Inquiry' : '문의 보내기');
     }
