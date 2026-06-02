@@ -292,11 +292,8 @@ const I18n = (() => {
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
       if (dict[key] !== undefined) {
-        // Preserve inner HTML for elements with child tags
-        if (el.children.length === 0) {
-          // Replace \n with <br> for headings
-          el.innerHTML = dict[key].replace(/\n/g, '<br>');
-        }
+        // Replace \n with <br> for headings and insert translation
+        el.innerHTML = dict[key].replace(/\n/g, '<br>');
       }
     });
 

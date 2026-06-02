@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           await fetch('https://home-careguide-s-projects.vercel.app/api/inquire', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
+            body: JSON.stringify({ ...data, lang: lang })
           });
           console.log('[Email] Inquiry notification sent');
         } catch (mailErr) {
@@ -237,7 +237,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             await fetch('https://home-careguide-s-projects.vercel.app/api/register', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ ...data, price: coursePrice })
+              body: JSON.stringify({ ...data, price: coursePrice, lang: lang })
             });
             console.log('[Email] Registration notification sent');
           } catch (mailErr) {
