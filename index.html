@@ -28,7 +28,31 @@
     <button class="brand" id="brandHome" aria-label="홈으로">
       <span class="glyph">
         <svg class="logo-diamond" width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M11 1L21 11L11 21L1 11L11 1Z" fill="currentColor"/>
+          <defs>
+            <linearGradient id="logoLeftGlow" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#F59E0B" />
+              <stop offset="100%" stop-color="#10B981" />
+            </linearGradient>
+            <linearGradient id="logoRightGlow" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#06B6D4" />
+              <stop offset="100%" stop-color="#D946EF" />
+            </linearGradient>
+            <filter id="logoNeonBlur" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="1.2" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+          <!-- Left-bottom neon glow -->
+          <rect x="4.5" y="7.5" width="10" height="10" rx="2.2" transform="rotate(45, 9.5, 12.5)" stroke="url(#logoLeftGlow)" stroke-width="1.8" filter="url(#logoNeonBlur)" fill="none" />
+          <!-- Left-bottom white core -->
+          <rect x="4.5" y="7.5" width="10" height="10" rx="2.2" transform="rotate(45, 9.5, 12.5)" stroke="#FFFFFF" stroke-width="0.8" fill="none" />
+          <!-- Right-top neon glow -->
+          <rect x="7.5" y="4.5" width="10" height="10" rx="2.2" transform="rotate(45, 12.5, 9.5)" stroke="url(#logoRightGlow)" stroke-width="1.8" filter="url(#logoNeonBlur)" fill="none" />
+          <!-- Right-top white core -->
+          <rect x="7.5" y="4.5" width="10" height="10" rx="2.2" transform="rotate(45, 12.5, 9.5)" stroke="#FFFFFF" stroke-width="0.8" fill="none" />
         </svg>
       </span>
       <span class="logo-text">CareAX</span>

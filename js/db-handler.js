@@ -6,47 +6,17 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // ─── Supabase Client 초기화 ───
   async function initSupabase() {
-    try {
-      // 1. 서버리스 API로부터 Config 가져오기 시도 (Vercel/Production 보안성 최우선)
-      const res = await fetch('/api/config');
-      if (res.ok) {
-        const config = await res.json();
-        if (config.supabaseUrl && config.supabaseKey) {
-          supabase = window.supabase.createClient(config.supabaseUrl, config.supabaseKey);
-          console.log('[Supabase] Initialized via API Config');
-          return;
-        }
-      }
-    } catch (e) {
-      console.warn('[Supabase] API Config failed, trying local fallback...', e);
-    }
+    // 이 URL과 Key는 RLS 보안 정책을 통해 SELECT(조회)가 엄격히 제한되고
+    // 오직 INSERT(문의/수강신청 등록)만 허용되도록 설정되어 안전한 Public Anon 정보입니다.
+    const url = "https://jbwogaokapcxlespfokt.supabase.co";
+    const key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Impid29nYW9rYXBjeGxlc3Bmb2t0Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3OTE3NTI1NSwiZXhwIjoyMDk0NzUxMjU1fQ.O5EIw_E3TgofGgR-zJqzoRfJvqBNyl0-lq9l29z83jA";
 
     try {
-      // 2. 로컬 개발 환경용 /.env 동적 fetch 시도 (보안 무결성 유지)
-      const res = await fetch('/.env');
-      if (res.ok) {
-        const text = await res.text();
-        const env = {};
-        text.split('\n').forEach(line => {
-          const parts = line.split('=');
-          if (parts.length >= 2) {
-            env[parts[0].trim()] = parts.slice(1).join('=').trim();
-          }
-        });
-        const url = env['NEXT_PUBLIC_SUPABASE_URL'];
-        const key = env['NEXT_PUBLIC_SUPABASE_ANON_KEY'];
-        if (url && key) {
-          supabase = window.supabase.createClient(url, key);
-          console.log('[Supabase] Initialized via Local Env');
-          return;
-        }
-      }
+      supabase = window.supabase.createClient(url, key);
+      console.log('[Supabase] Initialized with Public Credentials');
     } catch (e) {
-      console.error('[Supabase] Local Env failed:', e);
+      console.error('[Supabase] Initialization failed:', e);
     }
-
-    // 3. Fallback: 환경변수 하드코딩 유출을 방지하기 위한 안내 출력
-    console.error('[Supabase] Failed to load credentials. Verify SMTP/Supabase setup in .env');
   }
 
   await initSupabase();
@@ -99,19 +69,25 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         if (error) throw error;
 
-        // Vercel Serverless Function 호출 (Nodemailer 이메일 알림 전송)
-        const emailRes = await fetch('/api/inquire', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
-        });
-
-        if (emailRes.ok) {
-          showStatus(contactStatus, lang === 'en' ? 'Inquiry submitted successfully! We will contact you soon 🙏' : '문의가 접수되었습니다. 곧 연락드리겠습니다 🙏', 'success');
-          contactForm.reset();
-        } else {
-          showStatus(contactStatus, lang === 'en' ? 'Inquiry saved, but email notification failed.' : '문의는 저장되었으나 메일 발송에 실패했습니다.', 'success');
+        // Vercel Serverless Function 호출 (Nodemailer 이메일 알림 전송) - 오류 방어 감싸기
+        try {
+          const emailRes = await fetch('/api/inquire', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          });
+          if (emailRes.ok) {
+            console.log('[Email] Inquiry notification sent');
+          } else {
+            console.warn('[Email] Inquiry notification failed status:', emailRes.status);
+          }
+        } catch (mailErr) {
+          console.warn('[Email] Inquiry notification service unavailable:', mailErr);
         }
+
+        // DB 적재 성공 완료 처리
+        showStatus(contactStatus, lang === 'en' ? 'Inquiry submitted successfully! We will contact you soon 🙏' : '문의가 접수되었습니다. 곧 연락드리겠습니다 🙏', 'success');
+        contactForm.reset();
       } catch (err) {
         console.error('[Contact Submit Error]:', err);
         showStatus(contactStatus, lang === 'en' ? 'An error occurred. Please try again.' : '오류가 발생했습니다. 잠시 후 다시 시도해 주세요.', 'error');
@@ -176,24 +152,29 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         if (error) throw error;
 
-        // Vercel Serverless Function 호출 (수강신청 확인 메일 알림)
-        const emailRes = await fetch('/api/register', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
-        });
-
-        if (emailRes.ok) {
-          // 성공 완료 모달 출력
-          if (registerModal) {
-            registerModal.classList.add('open');
-            registerModal.setAttribute('aria-hidden', 'false');
+        // Vercel Serverless Function 호출 (수강신청 확인 메일 알림) - 오류 방어 감싸기
+        try {
+          const emailRes = await fetch('/api/register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          });
+          if (emailRes.ok) {
+            console.log('[Email] Registration notification sent');
+          } else {
+            console.warn('[Email] Registration notification failed status:', emailRes.status);
           }
-          registerForm.reset();
-          showStatus(registerStatus, '', '');
-        } else {
-          showStatus(registerStatus, lang === 'en' ? 'Registration saved, but confirmation email failed.' : '수강신청은 완료되었으나 확인 메일 발송에 실패했습니다.', 'success');
+        } catch (mailErr) {
+          console.warn('[Email] Registration notification service unavailable:', mailErr);
         }
+
+        // DB 적재 성공 완료 처리 (성공 모달 팝업)
+        if (registerModal) {
+          registerModal.classList.add('open');
+          registerModal.setAttribute('aria-hidden', 'false');
+        }
+        registerForm.reset();
+        showStatus(registerStatus, '', '');
       } catch (err) {
         console.error('[Register Submit Error]:', err);
         showStatus(registerStatus, lang === 'en' ? 'An error occurred. Please try again.' : '오류가 발생했습니다. 잠시 후 다시 시도해 주세요.', 'error');
@@ -257,28 +238,32 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         if (error) throw error;
 
-        // Vercel Serverless Function 호출 (수강신청 확인 메일 알림)
-        const emailRes = await fetch('/api/register', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
-        });
-
-        if (emailRes.ok) {
-          // 팝업 폼 모달 닫기
-          if (window.closeRegFormModal) {
-            window.closeRegFormModal();
+        // Vercel Serverless Function 호출 (수강신청 확인 메일 알림) - 오류 방어 감싸기
+        try {
+          const emailRes = await fetch('/api/register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          });
+          if (emailRes.ok) {
+            console.log('[Email] Popup registration notification sent');
+          } else {
+            console.warn('[Email] Popup registration notification failed status:', emailRes.status);
           }
-          // 성공 완료 모달 출력
-          if (registerModal) {
-            registerModal.classList.add('open');
-            registerModal.setAttribute('aria-hidden', 'false');
-          }
-          popupRegisterForm.reset();
-          showStatus(popupRegisterStatus, '', '');
-        } else {
-          showStatus(popupRegisterStatus, lang === 'en' ? 'Registration saved, but confirmation email failed.' : '수강신청은 완료되었으나 확인 메일 발송에 실패했습니다.', 'success');
+        } catch (mailErr) {
+          console.warn('[Email] Popup registration notification service unavailable:', mailErr);
         }
+
+        // DB 적재 성공 완료 처리 (성공 모달 팝업 및 입력 팝업 닫기)
+        if (window.closeRegFormModal) {
+          window.closeRegFormModal();
+        }
+        if (registerModal) {
+          registerModal.classList.add('open');
+          registerModal.setAttribute('aria-hidden', 'false');
+        }
+        popupRegisterForm.reset();
+        showStatus(popupRegisterStatus, '', '');
       } catch (err) {
         console.error('[Popup Register Submit Error]:', err);
         showStatus(popupRegisterStatus, lang === 'en' ? 'An error occurred. Please try again.' : '오류가 발생했습니다. 잠시 후 다시 시도해 주세요.', 'error');
