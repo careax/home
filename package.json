@@ -1,0 +1,8 @@
+{
+  "name": "careax-home-api",
+  "version": "1.0.0",
+  "description": "Vercel API support for CareAX",
+  "dependencies": {
+    "nodemailer": "^6.9.13"
+  }
+}

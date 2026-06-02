@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // Vercel Serverless Function 호출 (Nodemailer 이메일 알림 전송) - 오류 방어 감싸기
         try {
-          const emailRes = await fetch('/api/inquire', {
+          const emailRes = await fetch('https://home-careguide-s-projects.vercel.app/api/inquire', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // Vercel Serverless Function 호출 (수강신청 확인 메일 알림) - 오류 방어 감싸기
         try {
-          const emailRes = await fetch('/api/register', {
+          const emailRes = await fetch('https://home-careguide-s-projects.vercel.app/api/register', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
@@ -240,7 +240,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // Vercel Serverless Function 호출 (수강신청 확인 메일 알림) - 오류 방어 감싸기
         try {
-          const emailRes = await fetch('/api/register', {
+          const emailRes = await fetch('https://home-careguide-s-projects.vercel.app/api/register', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
