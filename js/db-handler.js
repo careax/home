@@ -195,9 +195,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         try {
           if (!supabase) throw new Error('Supabase client not initialized');
 
-          // A. Supabase DB 적재 (enrollments 테이블에 적재)
+          // A. Supabase DB 적재 (registrations 테이블에 적재)
           const { error } = await supabase
-            .from('enrollments')
+            .from('registrations')
             .insert([
               {
                 course_name: data.course_name,
