@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     const IMP = window.IMP;
-    IMP.init("imp19085719"); // 포트원 공식 데모 가맹점 식별코드
+    IMP.init("imp31068472"); // 포트원 공식 데모 가맹점 식별코드
 
     const coursePrice = getCoursePrice(data.course_name);
 
