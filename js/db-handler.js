@@ -63,8 +63,7 @@ document.addEventListener('DOMContentLoaded', async () => {
               name: data.name,
               email: data.email,
               organization: data.org || null,
-              message: data.message,
-              status: 'Pending'
+              message: data.message
             }
           ]);
 
@@ -92,7 +91,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // 3. Vercel Serverless Function 호출 (이메일 알림 전송)
         try {
-          await fetch('https://home-careguide-s-projects.vercel.app/api/inquire', {
+          await fetch('https://home-rust-three-78.vercel.app/api/inquire', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ ...data, lang: lang })
@@ -205,6 +204,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 email: data.email,
                 phone: data.phone,
                 notes: data.notes || null,
+                price: coursePrice,
                 status: 'Pending'
               }
             ]);
@@ -234,7 +234,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
           // C. Vercel Serverless Function 호출 (이메일 알림 전송)
           try {
-            await fetch('https://home-careguide-s-projects.vercel.app/api/register', {
+            await fetch('https://home-rust-three-78.vercel.app/api/register', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ ...data, price: coursePrice, lang: lang })
