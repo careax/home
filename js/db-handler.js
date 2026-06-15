@@ -180,7 +180,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     setLoading(submitEl, true, lang, true);
 
     IMP.request_pay({
-      pg: "html5_inicis", // 이니시스 테스트 결제
+      pg: "kakaopay.TC0ONETIME", // 카카오페이 테스트 결제 (sandbox)
       pay_method: "card",
       merchant_uid: "merchant_" + new Date().getTime(),
       name: data.course_name,
