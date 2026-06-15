@@ -173,14 +173,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     const IMP = window.IMP;
-    IMP.init("imp31068472"); // 포트원 공식 데모 가맹점 식별코드
+    IMP.init("imp61825122"); // 포트원 공식 데모 가맹점 식별코드
 
     const coursePrice = getCoursePrice(data.course_name);
 
     setLoading(submitEl, true, lang, true);
 
     IMP.request_pay({
-      pg: "html5_inicis.INIpayTest", // 이니시스 테스트 결제 (sandbox)
+      pg: "html5_inicis", // 이니시스 테스트 결제 (sandbox)
       pay_method: "card",
       merchant_uid: "merchant_" + new Date().getTime(),
       name: data.course_name,
