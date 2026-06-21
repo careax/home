@@ -27,8 +27,8 @@ const DICT = {
     'about.body2':   '스타트업 PO부터 글로벌 기업 UX/UI 기획, PM까지 다양한 환경에서 검증된 워크플로우를, 4단계 커리큘럼으로 압축해 전달합니다.',
 
     /* Curriculum */
-    'curriculum.heading': '한 학기를 한 워크숍에.\nAX 커리큘럼.',
-    'curriculum.sub':     '기획·디자인·PM 직군이 AI 와 함께 일하는 방식을 4단계로 재설계합니다. 단발성 특강부터 8주 인텐시브까지, 조직 단계에 맞게 결합 가능합니다.',
+    'curriculum.heading': '취업준비생부터 주니어 PM까지.\n실전형 AI 서비스 기획 커리큘럼.',
+    'curriculum.sub':     '비개발자 기획자, PM, 취업준비생이 현업에서 즉시 활약할 수 있도록 실전 프로젝트 중심으로 구성된 CareAX의 직무 밀착형 AI 워크숍입니다.',
 
     /* Filters */
     'filter.all':        'All',
@@ -48,36 +48,84 @@ const DICT = {
     'label.intensive':  '인텐시브',
 
     /* AX 101 */
-    'ax101.title': 'UX/UI 기획 입문 &\n실무 포트폴리오',
-    'ax101.desc':  '취준생과 재직자를 대상으로 UX/UI 기획 입문부터 실무까지 학습하며 Figma, Claude, Vibe Coding을 활용하여 실제 포트폴리오를 완성합니다.',
-    'ax101.w1':    'UX/UI 기획 기초 & Claude 활용 서비스 리서치',
-    'ax101.w2':    'Figma 기초 및 UI/UX 와이어프레임 & 프로토타입 실습',
-    'ax101.w3':    'Vibe Coding(바이브 코딩)을 활용한 프론트엔드 UI 화면 구현',
-    'ax101.w4':    '개인 실무 포트폴리오 피드백 & 최종 웹 배포',
+    'ax101.title': 'AI 서비스 기획 &\nDify 활용 역기획 실무 마스터',
+    'ax101.desc':  '취준생과 비개발자 기획자/PM을 위한 실전 과정. 성공적인 AI 서비스를 분석하고 Dify와 노코드 RAG 도구를 활용해 직접 역기획 및 구현하며 실무 기획 역량을 기릅니다.',
+    'ax101.w1':    'AI 서비스 기획 프로세스 & 유명 AI 서비스 Dify 기반 역기획 분석',
+    'ax101.w2':    '노코드 RAG 기반 데이터 전처리 & 지식 베이스 설계',
+    'ax101.w3':    'Dify / Flowise를 활용한 프롬프트 파이프라인 & LLM 워크플로우 구현',
+    'ax101.w4':    '실제 AI 서비스 프로토타입 론칭 & 실무 포트폴리오 피드백',
 
     /* AX 201 */
-    'ax201.title': 'Dify 기반 AICC\n워크플로우 기획 & 론칭',
-    'ax201.desc':  'Dify를 기반으로 AI 컨택센터(AICC)의 핵심 시나리오와 멀티턴 워크플로우를 기획하고, API 연동을 통해 실제 웹 서비스를 성공적으로 론칭합니다.',
-    'ax201.w1':    'AICC 비즈니스 이해 및 LLM 프롬프트 설계 기초',
-    'ax201.w2':    'Dify 기반 RAG(검색 증강 생성) 지식 베이스 설계',
-    'ax201.w3':    'LLM 에이전트 및 컴포넌트 간 멀티턴 워크플로우 기획',
-    'ax201.w4':    '웹 퍼블리싱 및 외부 API 연동/실전 론칭',
+    'ax201.title': '피그마 & AI 활용\n디자인 시스템 구축 및 자동화 실무',
+    'ax201.desc':  'Figma와 AI(Claude Code, Figma MCP)를 활용해 디자인 토큰을 정의하고, 기획-디자인-개발 협업을 자동화하여 프로덕트 일관성을 유지하는 디자인 시스템 워크플로우를 학습합니다.',
+    'ax201.w1':    '브랜드 디자인 가이드 수립 & 피그마 디자인 시스템 기초',
+    'ax201.w2':    'Figma MCP 및 AI 활용 디자인 토큰(Design Tokens) 정의',
+    'ax201.w3':    'Claude Code를 활용한 프론트엔드 코드 자동화 연동',
+    'ax201.w4':    '디자인 시스템 검증 & 실무 협업 자동화 워크플로우 완성',
 
     /* AX 301 */
-    'ax301.title': '글로벌 마케팅 플랫폼\n& CRM 기획 적용',
-    'ax301.desc':  '글로벌 마케팅 솔루션(MarTech)과 CRM 데이터를 활용해 사용자 획득(Acquisition)부터 리텐션(Retention)까지의 마케팅 자동화 플로우를 설계하고 적용합니다.',
-    'ax301.w1':    '글로벌 마케팅 기술(MarTech) 생태계 & CRM 데이터 모델링',
-    'ax301.w2':    '고객 여정 지도(CJM) 기반 개인화 트리거 및 시나리오 정의',
-    'ax301.w3':    '글로벌 마케팅 플랫폼 연동 및 자동화 메시징 기획',
-    'ax301.w4':    'CRM 데이터 분석 기반 캠페인 최적화 및 현업 적용 실습',
+    'ax301.title': 'AICC 서비스 기획 및\nLLM 에이전트 구축 실무',
+    'ax301.desc':  'AICC(AI 고객센터) 구축 실무를 위한 과정. RAG(검색 증강 생성) 지식 베이스 설계와 LLM 에이전트 시나리오 정의를 배우고, Dify 및 외부 API 연동을 통해 AI 상담 서비스를 실제 론칭합니다.',
+    'ax301.w1':    'AICC 비즈니스 구조 이해 및 LLM 시나리오 기획',
+    'ax301.w2':    'RAG 지식 베이스 구축 & 프롬프트 가이드라인 설계',
+    'ax301.w3':    'Dify 기반 멀티턴(Multi-turn) 워크플로우 에이전트 구현',
+    'ax301.w4':    '웹 퍼블리싱 연동, AICC 서비스 론칭 및 성능 검증',
 
     /* AX 401 */
-    'ax401.title': 'AX PM 리더십 &\n기업 맞춤형 워크숍',
-    'ax401.desc':  '현업 팀장 및 기획 리더를 대상으로 조직 내 AX 역량 내재화, 생성형 AI 워크플로우 설계 가이드라인 및 맞춤형 솔루션을 전수합니다.',
-    'ax401.w1':    '엔터프라이즈 AI 트렌드 및 조직 내 AX 도입 로드맵',
-    'ax401.w2':    '생성형 AI 서비스 개발 프로세스 & 기획 리스크 관리',
-    'ax401.w3':    '사내 워크플로우 최적화 및 AI 도구 평가 프레임워크',
-    'ax401.w4':    '우리 조직만을 위한 AI 플랫폼 맞춤형 시나리오 설계 & 컨설팅',
+    'ax401.title': '생성형 AI 마케팅 &\nCRM 업무 자동화 캠프',
+    'ax401.desc':  '마케터와 기획자를 위한 실전 마케팅 자동화 과정. AI 콘텐츠 제작과 n8n/Dify 기반의 CRM 마케팅 자동화 파이프라인을 설계하여 고객 리텐션을 극대화하는 방법을 배웁니다.',
+    'ax401.w1':    'MarTech 생태계 이해 및 AI 기반 마케팅 페르소나 정의',
+    'ax401.w2':    'ChatGPT/Midjourney 활용 고효율 광고 카피 & 비주얼 제작',
+    'ax401.w3':    'n8n / Dify를 활용한 CRM 마케팅 자동화 트리거 설계',
+    'ax401.w4':    'CRM 데이터 분석, 마케팅 캠페인 성과 지표(GA4 등) 분석 및 최적화',
+
+    /* Course Detail Pages Common */
+    'nav.backToHome': '홈으로',
+    'course.audience': '수강 대상',
+    'course.objectives': '학습 목표',
+    'course.projects': '실전 프로젝트 결과물',
+    'course.curriculum': '주차별 커리큘럼',
+    'course.instructor': '강사 소개',
+    'course.enrollCTA': '수강 신청하기',
+    'course.backCTA': '커리큘럼 목록으로',
+    'course.weeks': '주차',
+    'course.hours': '시간',
+    
+    /* Course Detail Pages AX 101 */
+    'ax101.audience': '비개발자 기획자/PM, IT 직무 취업준비생, AI 기획 역량을 포트폴리오에 담고 싶은 분',
+    'ax101.objectives': '성공한 AI 서비스의 아키텍처를 Dify로 분석하고 직접 구현하기<br>• 텍스트·문서 파싱 및 RAG 지식 베이스 설계 기법 터득<br>• 현업 수준의 AI 프로덕트 기획안 작성 및 실제 론칭',
+    'ax101.projects': 'Dify 기반의 AI 서비스 역기획 프로토타입 + 실무 AI 서비스 기획서 및 개인 포트폴리오 웹사이트 배포',
+    'ax101.w1_detail': '• AI 서비스 기획 프로세스 개요<br>• 최신 LLM 기술 트렌드 및 기획자의 역할 정의<br>• 시장에서 검증된 AI 프로덕트(서비스) 역기획 및 데이터 흐름 분석',
+    'ax101.w2_detail': '• PDF, Word, Web 등 다양한 포맷의 문서 파싱 및 가공 기법<br>• 오답(Hallucination) 방지를 위한 벡터 스토어 임베딩 최적화<br>• AI 서비스의 핵심이 되는 RAG(검색 증강 생성) 지식 베이스 기획',
+    'ax101.w3_detail': '• Dify 및 Flowise를 활용한 노코드 프롬프트 파이프라인 설계<br>• 다중 조건 분기 처리 및 API 연동을 통한 에이전트 워크플로우 최적화<br>• 멀티턴 대화 시나리오 및 시스템 프롬프트(System Prompt) 고도화',
+    'ax101.w4_detail': '• 프론트엔드 UI 화면 구현 및 웹 배포<br>• 실제 작동하는 AI 서비스 포트폴리오 완성<br>• 현업 PM 강사의 1:1 맞춤형 기획서 피드백 및 포트폴리오 리뷰',
+
+    /* Course Detail Pages AX 201 */
+    'ax201.audience': '프로덕트 디자이너, UI/UX 기획자, 개발자와의 협업 속도를 혁신하고 싶은 PM',
+    'ax201.objectives': '피그마 컴포넌트와 디자인 토큰(Design Tokens)의 실무 표준 정립<br>• Claude Code와 Figma MCP를 결합한 코드 자동화 구현<br>• 디자인 변경사항이 프론트엔드 코드에 즉시 반영되는 싱크 환경 구축',
+    'ax201.projects': '실무 협업용 피그마 디자인 시스템 라이브러리 + Claude Code 연동 프론트엔드 컴포넌트 자동 생성 파일',
+    'ax201.w1_detail': '• 일관성 있는 UI를 위한 브랜드 디자인 가이드라인 정립<br>• 피그마(Figma) 베스트 프랙티스 기반의 컴포넌트 구조화<br>• 재사용 가능한 레이아웃과 반응형 디자인 시스템 설계',
+    'ax201.w2_detail': '• AI가 이해할 수 있는 형태의 디자인 토큰(Design Tokens) 명세 수립<br>• Figma MCP(Model Context Protocol) 환경 구축 및 연결<br>• 피그마 디자인 정보를 구조화된 JSON 데이터로 추출 및 변환',
+    'ax201.w3_detail': '• Claude Code 기반 AI 에이전트와 코드베이스 연결<br>• 디자인 토큰 데이터를 기반으로 리액트/HTML/CSS 컴포넌트 자동 코드 생성<br>• 스타일시트 및 UI 변수 자동화 파이프라인 구현',
+    'ax201.w4_detail': '• 디자인 변경 시 코드가 자동으로 업데이트되는 싱크 기능 검증<br>• 다크모드, 다국어 대응 등 복합 스타일 시스템 최적화<br>• 기획자-디자이너-개발자 간의 불필요한 커뮤니케이션을 없애는 협업 시스템 완성',
+
+    /* Course Detail Pages AX 301 */
+    'ax301.audience': '고객 경험(CX) 부서 기획자, 사내 운영 효율을 높이고자 하는 PM/제품 관리자',
+    'ax301.objectives': 'LLM 대화형 에이전트의 멀티턴 시나리오 설계 역량 확보<br>• 기업 내부 문서를 오답(Hallucination) 없이 검색하는 RAG 파이프라인 기획<br>• 외부 API 연동을 통한 실시간 데이터 조회 챗봇 구현',
+    'ax301.projects': '실시간 DB 조회 및 문서 참조 기능이 탑재된 Dify 기반 AICC 에이전트 웹 서비스 론칭',
+    'ax301.w1_detail': '• AI 컨택센터(AICC) 비즈니스 가치 및 아키텍처 이해<br>• 인바운드/아웃바운드 콜봇 및 챗봇 서비스의 사용자 경험 시나리오 기획<br>• 상담 데이터 및 로그 구조 분석 기법',
+    'ax301.w2_detail': '• 기업 사내 문서, 가이드라인 기반 RAG 지식 베이스 설계<br>• 질문 의도 분류(Intent Classification)를 위한 프롬프트 가이드라인 정의<br>• 하이브리드 검색 및 검색 결과 재순위화(Reranking) 기획',
+    'ax301.w3_detail': '• Dify를 사용한 멀티턴 대화 시나리오 설계 및 컴포넌트 매핑<br>• API 노드 연결을 활용한 회원 정보 조회, 예약 상태 변경 등의 트랜잭션 처리<br>• 외부 챗봇 연동 규격 설계',
+    'ax301.w4_detail': '• 에이전트 웹 서비스 프론트엔드 연동 및 실전 론칭<br>• 사용자 대화 로그 기반 에이전트 성능 평가 및 답변 정확도 개선 루틴 설계<br>• AICC 상용화를 위한 보안/개인정보 처리 기획 가이드라인',
+
+    /* Course Detail Pages AX 401 */
+    'ax401.audience': '그로스 기획자, 데이터 분석 마케터, AI로 1인 마케팅 자동화 파이프라인을 구축하고 싶은 기획자/PM',
+    'ax401.objectives': '브랜드 톤앤매너를 유지하는 AI 기반 광고 콘텐츠 대량 제작 프로세스 구축<br>• n8n과 Dify를 결합한 조건별 CRM 자동 메시징 설계<br>• 마케팅 유입부터 리텐션 성과(GA4 등) 연동 및 대시보드 시각화',
+    'ax401.projects': 'n8n-Dify 연동 고객 행동 트리거형 CRM 마케팅 자동화 워크플로우 + 성과 분석 자동화 시스템',
+    'ax401.w1_detail': '• 마테크(MarTech) 생태계의 주요 도구 및 CRM 데이터 연동 원리 학습<br>• 생성형 AI를 활용한 타겟 오디언스 분석 및 페르소나 정의<br>• 고객 여정 지도(CJM) 기반의 터치포인트 설계',
+    'ax401.w2_detail': '• ChatGPT, Midjourney 등을 활용한 멀티 레이아웃 이미지 및 카피 자동 생성<br>• 브랜드 가이드라인과 톤앤매너를 유지하는 시스템 프롬프트 작성<br>• 배너 광고, 소셜 콘텐츠 대량 제작 파이프라인 구축',
+    'ax401.w3_detail': '• n8n 노코드 워크플로우 엔진 기반의 자동화 파이프라인 설계<br>• 고객 행동(회원가입, 장바구니 방치, 첫 결제 등) 발생 시 Dify 에이전트를 통한 맞춤형 메시지 자동 생성<br>• 알림톡, 이메일, 슬랙 연동 발송 자동화',
+    'ax401.w4_detail': '• CRM 마케팅 유입 성과 데이터 및 사용자 행동 로그 수집<br>• GA4(Google Analytics) 및 내부 데이터베이스 연동 성과 시각화<br>• AI 분석을 활용한 발송 시간 및 메시지 카피 A/B 테스트 최적화 루틴 수립',
 
     /* Tags */
     'tag.beginner':    '입문',
@@ -160,8 +208,8 @@ const DICT = {
     'about.body2':   'Verified workflows from startup PO to global enterprise UX/UI planning and PM — distilled into a 4-stage curriculum.',
 
     /* Curriculum */
-    'curriculum.heading': 'A full semester in one workshop.\nThe AX Curriculum.',
-    'curriculum.sub':     'A 4-stage redesign of how planners, designers, and PMs work with AI. Combinable from single lectures to 8-week intensives.',
+    'curriculum.heading': 'For Job Seekers & Junior PMs.\nHands-on AI Service Planning Curriculum.',
+    'curriculum.sub':     'CareAX\'s job-aligned AI workshops built around practical projects to help non-developer planners, PMs, and job seekers thrive in the real-world industry.',
 
     /* Filters */
     'filter.all':        'All',
@@ -181,36 +229,84 @@ const DICT = {
     'label.intensive':  'Intensive',
 
     /* AX 101 */
-    'ax101.title': 'Intro to UX/UI Planning\n& Practical Portfolio',
-    'ax101.desc':  'Learn UX/UI planning from basics to practice for job seekers and professionals. Leverage Figma, Claude, and Vibe Coding to complete a ready-to-ship portfolio.',
-    'ax101.w1':    'UX/UI Planning Basics & Service Research with Claude',
-    'ax101.w2':    'Figma Basics & UI/UX Wireframing & Prototyping',
-    'ax101.w3':    'Front-end UI Implementation via Vibe Coding',
-    'ax101.w4':    'Personal Portfolio Review & Final Web Deployment',
+    'ax101.title': 'AI Service Planning &\nReverse Engineering w/ Dify',
+    'ax101.desc':  'A hands-on masterclass for job seekers and non-developer PMs. Analyze successful AI products and reverse-engineer them using Dify and No-Code RAG tools.',
+    'ax101.w1':    'AI Service Planning Process & Dify-Based Reverse Engineering of Top AI Services',
+    'ax101.w2':    'No-Code RAG Data Preprocessing & Knowledge Base Design',
+    'ax101.w3':    'Prompt Pipeline & LLM Workflow Implementation using Dify / Flowise',
+    'ax101.w4':    'AI Service Prototyping Launch & Portfolio Coaching',
 
     /* AX 201 */
-    'ax201.title': 'Dify-Based AICC\nWorkflow Planning & Launch',
-    'ax201.desc':  'Plan and design AI Contact Center (AICC) scenarios and multi-turn workflows using Dify, and launch a live web application through API integration.',
-    'ax201.w1':    'Understanding AICC & LLM Prompt Engineering Basics',
-    'ax201.w2':    'Designing Knowledge Bases with Dify-based RAG',
-    'ax201.w3':    'Planning Multi-turn Workflows & LLM Agent Components',
-    'ax201.w4':    'Web Publishing & External API Integration / Live Launch',
+    'ax201.title': 'Design System w/ Figma &\nAI Automation Practice',
+    'ax201.desc':  'Define design tokens and automate design-to-code workflows using Figma and AI (Claude Code, Figma MCP) to ensure product consistency and speed.',
+    'ax201.w1':    'Brand Design Guide Specification & Figma Design System Basics',
+    'ax201.w2':    'Defining Design Tokens using Figma MCP & AI',
+    'ax201.w3':    'Front-end Code Automation Sync using Claude Code',
+    'ax201.w4':    'Design System Validation & Practical Collaboration Automation',
 
     /* AX 301 */
-    'ax301.title': 'Global Marketing Platform\n& CRM Planning Practice',
-    'ax301.desc':  'Leverage global marketing platforms (MarTech) and CRM data to design automation flows from acquisition to retention, applying them directly to real business cases.',
-    'ax301.w1':    'MarTech Ecosystem & CRM Data Modeling Basics',
-    'ax301.w2':    'Defining Personalized Triggers & Scenarios based on CJM',
-    'ax301.w3':    'Integrating Global Marketing Platforms & Automated Messaging',
-    'ax301.w4':    'Campaign Optimization based on CRM Data & Business Case Studies',
+    'ax301.title': 'AICC Planning &\nLLM Agent Implementation',
+    'ax301.desc':  'A comprehensive guide to building AI Contact Center (AICC) solutions. Plan RAG knowledge bases, define multi-turn scenarios, and deploy live AICC agents via API integrations.',
+    'ax301.w1':    'AICC Business Models & LLM Scenario Specification',
+    'ax301.w2':    'RAG Knowledge Base Building & Prompt Engineering Guidelines',
+    'ax301.w3':    'Multi-turn Dialog Workflows & LLM Agent Creation via Dify',
+    'ax301.w4':    'Web Publishing Integration, AICC Service Launch & Evaluation',
 
     /* AX 401 */
-    'ax401.title': 'AX PM Leadership &\nCustom Enterprise Workshop',
-    'ax401.desc':  'Empower engineering leads and planning managers to internalize AX capabilities, establish generative AI workflow guidelines, and design custom solutions.',
-    'ax401.w1':    'Enterprise AI Trends & AX Adoption Roadmap',
-    'ax401.w2':    'Generative AI Development Processes & Risk Management',
-    'ax401.w3':    'Workflow Optimization & AI Tool Evaluation Frameworks',
-    'ax401.w4':    'Custom AI Platform Scenario Design & Consulting',
+    'ax401.title': 'Generative AI Marketing &\nCRM Automation Camp',
+    'ax401.desc':  'Design automated marketing pipelines for marketers and PMs. Automate content generation and CRM workflows using n8n and Dify to maximize user retention.',
+    'ax401.w1':    'MarTech Ecosystem & Defining AI-Driven Marketing Personas',
+    'ax401.w2':    'High-Conversion Ad Copy & Visual Asset Production using ChatGPT & Midjourney',
+    'ax401.w3':    'CRM Marketing Automation Triggers & Workflow Design via n8n / Dify',
+    'ax401.w4':    'CRM Data Analysis, Marketing Campaigns KPI (GA4) Analysis & Optimization',
+
+    /* Course Detail Pages Common */
+    'nav.backToHome': 'Home',
+    'course.audience': 'Target Audience',
+    'course.objectives': 'Course Objectives',
+    'course.projects': 'Hands-on Project Outcomes',
+    'course.curriculum': 'Weekly Syllabus',
+    'course.instructor': 'About the Instructor',
+    'course.enrollCTA': 'Enroll Now',
+    'course.backCTA': 'Back to Curriculum',
+    'course.weeks': 'Week',
+    'course.hours': 'Hours',
+    
+    /* Course Detail Pages AX 101 */
+    'ax101.audience': 'Non-developer planners/PMs, IT job seekers, and anyone looking to showcase practical AI planning in their portfolio.',
+    'ax101.objectives': 'Analyze and rebuild successful AI services using Dify<br>• Master document parsing and RAG knowledge base design<br>• Write professional-grade AI product specifications and deploy live prototypes.',
+    'ax101.projects': 'Reverse-engineered AI service prototype built on Dify + Professional AI product specification and a live personal portfolio website.',
+    'ax101.w1_detail': '• AI Service Planning Process Overview<br>• Latest LLM Tech Trends & Role of Product Managers<br>• Case Study: Reverse Engineering top AI services & tracing data flows',
+    'ax101.w2_detail': '• Document parsing & processing for various formats (PDF, Word, Web)<br>• Vector store embedding optimizations to minimize hallucination<br>• Designing custom RAG (Retrieval-Augmented Generation) knowledge bases',
+    'ax101.w3_detail': '• Designing no-code prompt pipelines using Dify and Flowise<br>• Workflow optimizations via conditional branching and API nodes<br>• Refining multi-turn dialogue scenarios & System Prompts',
+    'ax101.w4_detail': '• Implementing front-end UI layouts and deploying online<br>• Completing a fully functional AI service portfolio piece<br>• 1:1 project critique and feedback from a senior PM',
+
+    /* Course Detail Pages AX 201 */
+    'ax201.audience': 'Product designers, UI/UX planners, and PMs who want to revolutionize collaboration speed with engineering teams.',
+    'ax201.objectives': 'Establish industry-standard Figma components and Design Tokens<br>• Implement code automation using Claude Code and Figma MCP<br>• Build a sync workflow where design changes update the codebase instantly.',
+    'ax201.projects': 'Figma Design System library for production + Auto-generated front-end component files synced via Claude Code.',
+    'ax201.w1_detail': '• Setting up consistent brand design guidelines<br>• Figma components structuring based on industry best practices<br>• Designing reusable layouts and responsive UI systems',
+    'ax201.w2_detail': '• Defining Design Tokens schemas that AI can read and parse<br>• Setting up and connecting Figma MCP (Model Context Protocol)<br>• Exporting Figma designs into structured JSON data',
+    'ax201.w3_detail': '• Connecting your code base to Claude Code AI agent<br>• Automating React/HTML/CSS component generation from design tokens<br>• Building style variables & stylesheet pipelines',
+    'ax201.w4_detail': '• Verifying automatic sync when design variables update<br>• Optimizing complex styles like dark mode and multi-language support<br>• Completing collaboration workflows to eliminate communication overhead',
+
+    /* Course Detail Pages AX 301 */
+    'ax301.audience': 'Customer Experience (CX) managers, PMs, and product leaders looking to boost internal operations efficiency.',
+    'ax301.objectives': 'Acquire skills to design multi-turn dialog scenarios for LLM agents<br>• Build custom RAG pipelines to search company documentation without hallucination<br>• Connect live APIs to retrieve and update user data dynamically.',
+    'ax301.projects': 'A live Dify-based AICC agent web service equipped with real-time database queries and document search.',
+    'ax301.w1_detail': '• AICC business models, values, and system architecture<br>• UX dialog mapping for inbound/outbound callbots and chatbot services<br>• Analyzing customer dialog logs and dataset structures',
+    'ax301.w2_detail': '• Custom RAG design utilizing internal knowledge bases<br>• Intent classification guidelines & prompt engineering specifications<br>• Hybrid search optimization and search reranking',
+    'ax301.w3_detail': '• Multi-turn scenario design & Dify workflow component mapping<br>• Handling transactions like membership search and booking changes via API nodes<br>• External chatbot API specification design',
+    'ax301.w4_detail': '• Front-end integration and launching the live AICC agent web service<br>• Continuous evaluation and prompt tuning based on user chat logs<br>• AICC security and privacy compliance guidelines for production',
+
+    /* Course Detail Pages AX 401 */
+    'ax401.audience': 'Growth planners, data-driven marketers, and PMs who want to build solo marketing automation pipelines using AI.',
+    'ax401.objectives': 'Establish automated bulk ad content production preserving brand tone<br>• Design behavior-triggered CRM messaging pipelines using n8n and Dify<br>• Track acquisition to retention metrics (GA4) and visualize performance.',
+    'ax401.projects': 'An automated CRM marketing workflow triggered by customer behaviors built on n8n & Dify + Automated KPI analysis system.',
+    'ax401.w1_detail': '• Introduction to MarTech ecosystems and CRM data integration concepts<br>• Defining AI-driven marketing personas & audience segmentations<br>• Customer Journey Map (CJM) touchpoint analysis and planning',
+    'ax401.w2_detail': '• Bulk generating ad copy and visual variations using ChatGPT & Midjourney<br>• Creating system prompts that protect brand voice and styles<br>• Setting up image/copy generation automation flow',
+    'ax401.w3_detail': '• Building automation loops in n8n workflow engine<br>• Dynamic copy generation via Dify when actions occur (signups, cart abandons, etc.)<br>• Automatic distribution to Kakao, Email, and Slack channels',
+    'ax401.w4_detail': '• Gathering CRM marketing performance data and user interaction logs<br>• GA4 & database sync for real-time visualization dashboards<br>• Running A/B test optimization routines for delivery timing and copy using AI',
 
     /* Tags */
     'tag.beginner':    'Beginner',

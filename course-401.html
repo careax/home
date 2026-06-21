@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CareAX | 생성형 AI 마케팅 & CRM 업무 자동화 캠프</title>
+  <meta name="description" content="생성형 AI 마케팅 & CRM 업무 자동화 캠프">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+KR:wght@300;400;500;700;850&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="public/assets/careax_bi_favicon.png?v=2.3.0" />
+  <link rel="stylesheet" href="css/style.css?v=2.3.0" />
+  <style>
+    /* Detailed Subpage Specific Styles (CareAX Premium Dark Theme) */
+    .subpage-hero {
+      position: relative;
+      padding: 140px 0 60px;
+      border-bottom: 1px solid var(--line);
+      overflow: hidden;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: .1em;
+      color: var(--fg-3);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      transition: color .25s;
+    }
+    .back-link:hover {
+      color: #fff;
+    }
+    .hero-meta-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .hero-meta-badge .code {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .2em;
+      color: var(--fg-2);
+      padding: 4px 10px;
+      border: 1px solid var(--line-2);
+      border-radius: 4px;
+    }
+    .hero-meta-badge .level {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border: 1px solid rgba(250,204,21,.4);
+      border-radius: 999px;
+      color: var(--gold);
+    }
+    .subpage-hero h1 {
+      font-size: clamp(32px, 5vw, 54px);
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -.02em;
+      color: #fff;
+      margin-bottom: 18px;
+    }
+    .subpage-hero .subtitle {
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--fg-3);
+      margin-bottom: 28px;
+      font-family: var(--en);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .subpage-hero .desc {
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--fg-2);
+      max-width: 800px;
+    }
+
+    /* Subpage Layout Grid */
+    .subpage-content {
+      padding: 80px 0 120px;
+    }
+    .subpage-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 48px;
+      align-items: start;
+    }
+    @media(max-width:980px){
+      .subpage-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+    }
+
+    /* Info Cards */
+    .info-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 40px;
+      border-radius: 8px;
+      margin-bottom: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .info-card::before {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; top: 0;
+      height: 1px;
+      background: var(--grad);
+    }
+    .info-card h3 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .info-card h3 .icon {
+      width: 12px;
+      height: 12px;
+      background: var(--grad);
+      transform: rotate(45deg);
+      display: inline-block;
+    }
+    .info-card .card-text {
+      font-size: 15.5px;
+      line-height: 1.8;
+      color: var(--fg-2);
+    }
+    .info-card .card-text p {
+      margin-bottom: 12px;
+    }
+    .info-card .card-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Weekly Timeline */
+    .timeline-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--en);
+      letter-spacing: 0.02em;
+    }
+    .timeline-title .line-deco {
+      flex: 1;
+      height: 1px;
+      background: var(--line);
+    }
+    .week-timeline {
+      position: relative;
+      padding-left: 32px;
+    }
+    .week-timeline::before {
+      content: "";
+      position: absolute;
+      left: 7px;
+      top: 10px;
+      bottom: 10px;
+      width: 1px;
+      background: var(--line);
+    }
+    .week-node {
+      position: relative;
+      margin-bottom: 48px;
+    }
+    .week-node:last-child {
+      margin-bottom: 0;
+    }
+    .week-node::before {
+      content: "";
+      position: absolute;
+      left: -32px;
+      top: 6px;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: #000;
+      border: 2px solid var(--gold);
+      z-index: 2;
+    }
+    .week-node.active::before {
+      background: var(--grad);
+      border-color: transparent;
+      box-shadow: 0 0 12px var(--gold);
+    }
+    .week-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .week-tag {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .2em;
+      color: var(--gold);
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .week-time {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--fg-3);
+    }
+    .week-node h4 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.4;
+      margin-bottom: 10px;
+    }
+    .week-desc {
+      font-size: 14.5px;
+      line-height: 1.7;
+      color: var(--fg-3);
+    }
+
+    /* Bottom CTA Section */
+    .subpage-cta {
+      border-top: 1px solid var(--line);
+      padding: 80px 0;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.01);
+    }
+    .subpage-cta h2 {
+      font-size: 32px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 18px;
+    }
+    .subpage-cta p {
+      color: var(--fg-3);
+      font-size: 16px;
+      margin-bottom: 36px;
+    }
+    .subpage-cta-btns {
+      display: inline-flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .btn-primary {
+      font-family: var(--en);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      padding: 18px 36px;
+      border-radius: 4px;
+      background: var(--grad);
+      color: #000;
+      transition: opacity .2s, transform .2s;
+    }
+    .btn-primary:hover {
+      opacity: .9;
+      transform: translateY(-1px);
+    }
+    .btn-secondary {
+      font-family: var(--en);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      padding: 18px 36px;
+      border-radius: 4px;
+      border: 1px solid var(--line-2);
+      color: #fff;
+      transition: border-color .2s, transform .2s;
+    }
+    .btn-secondary:hover {
+      border-color: #fff;
+      transform: translateY(-1px);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════ NAV ═══════════════════════════════ -->
+<header class="nav dark" id="nav">
+  <div class="shell nav-inner">
+    <a href="index.html" class="brand" aria-label="홈으로">
+      <span class="glyph" style="display: flex; align-items: center;">
+        <img class="logo-diamond" src="public/assets/careax_bi_favicon.png?v=2.3.0" alt="CareAX 로고" style="width: 22px; height: 22px; object-fit: contain; transition: transform 0.35s cubic-bezier(.22,1,.36,1);" />
+      </span>
+      <span class="logo-text">CareAX</span>
+    </a>
+
+    <nav class="nav-links" aria-label="메인 메뉴" role="navigation">
+      <a href="index.html#about" class="nav-link-item" data-i18n="nav.about">About</a>
+      <a href="index.html#curriculum" class="nav-link-item" data-i18n="nav.curriculum">Curriculum</a>
+      <a href="index.html#method" class="nav-link-item" data-i18n="nav.method">Method</a>
+      <a href="index.html#contact" class="nav-link-item" data-i18n="nav.contact">Contact</a>
+    </nav>
+
+    <div class="nav-right-cluster">
+      <button class="lang-toggle" id="langToggle" aria-label="Switch language">
+        <span id="langLabel">KO</span><span class="lang-sep">|</span><span id="langLabelAlt">EN</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════════════════════ SUBPAGE HERO ══════════════════════════ -->
+<section class="subpage-hero">
+  <div class="shell">
+    <a href="index.html#curriculum" class="back-link">
+      <span>&larr;</span> <span data-i18n="course.backCTA">Back to Curriculum</span>
+    </a>
+    
+    <div class="hero-meta-badge">
+      <span class="code">AX · 401</span>
+      <span class="level" data-i18n="course.leadership">Leadership</span>
+    </div>
+    
+    <h1 data-i18n="ax401.title">생성형 AI 마케팅 & CRM 업무 자동화 캠프</h1>
+    <div class="subtitle">4 weeks · 16 hours</div>
+    <p class="desc" data-i18n="ax401.desc">
+      마케터와 기획자를 위한 실전 마케팅 자동화 과정. AI 콘텐츠 제작과 n8n/Dify 기반의 CRM 마케팅 자동화 파이프라인을 설계하여 고객 리텐션을 극대화하는 방법을 배웁니다.
+    </p>
+  </div>
+</section>
+
+<!-- ════════════════════════ SUBPAGE CONTENT ════════════════════════ -->
+<section class="subpage-content">
+  <div class="shell">
+    <div class="subpage-grid">
+      
+      <!-- Left Column: Info Cards -->
+      <div class="grid-left">
+        
+        <!-- Target Audience -->
+        <div class="info-card">
+          <h3><span class="icon"></span><span data-i18n="course.audience">수강 대상</span></h3>
+          <div class="card-text">
+            <p data-i18n="ax401.audience">그로스 기획자, 데이터 분석 마케터, AI로 1인 마케팅 자동화 파이프라인을 구축하고 싶은 기획자/PM</p>
+          </div>
+        </div>
+
+        <!-- Course Objectives -->
+        <div class="info-card">
+          <h3><span class="icon"></span><span data-i18n="course.objectives">학습 목표</span></h3>
+          <div class="card-text" data-i18n="ax401.objectives">
+            브랜드 톤앤매너를 유지하는 AI 기반 광고 콘텐츠 대량 제작 프로세스 구축<br>
+            • n8n과 Dify를 결합한 조건별 CRM 자동 메시징 설계<br>
+            • 마케팅 유입부터 리텐션 성과(GA4 등) 연동 및 대시보드 시각화
+          </div>
+        </div>
+
+        <!-- Hands-on Project Outcomes -->
+        <div class="info-card">
+          <h3><span class="icon"></span><span data-i18n="course.projects">실전 프로젝트 결과물</span></h3>
+          <div class="card-text">
+            <p data-i18n="ax401.projects">n8n-Dify 연동 고객 행동 트리거형 CRM 마케팅 자동화 워크플로우 + 성과 분석 자동화 시스템</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Timeline -->
+      <div class="grid-right">
+        <h3 class="timeline-title">
+          <span data-i18n="course.curriculum">Weekly Syllabus</span>
+          <span class="line-deco"></span>
+        </h3>
+        
+        <div class="week-timeline">
+          <!-- Week 1 -->
+          <div class="week-node active">
+            <div class="week-header">
+              <span class="week-tag"><span data-i18n="course.weeks">주차</span> 01</span>
+              <span class="week-time">4 <span data-i18n="course.hours">Hours</span></span>
+            </div>
+            <h4 data-i18n="ax401.w1">MarTech 생태계 이해 및 AI 기반 마케팅 페르소나 정의</h4>
+            <div class="week-desc" data-i18n="ax401.w1_detail">
+              • 마테크(MarTech) 생태계의 주요 도구 및 CRM 데이터 연동 원리 학습<br>
+              • 생성형 AI를 활용한 타겟 오디언스 분석 및 페르소나 정의<br>
+              • 고객 여정 지도(CJM) 기반의 터치포인트 설계
+            </div>
+          </div>
+
+          <!-- Week 2 -->
+          <div class="week-node">
+            <div class="week-header">
+              <span class="week-tag"><span data-i18n="course.weeks">주차</span> 02</span>
+              <span class="week-time">4 <span data-i18n="course.hours">Hours</span></span>
+            </div>
+            <h4 data-i18n="ax401.w2">ChatGPT/Midjourney 활용 고효율 광고 카피 & 비주얼 제작</h4>
+            <div class="week-desc" data-i18n="ax401.w2_detail">
+              • ChatGPT, Midjourney 등을 활용한 멀티 레이아웃 이미지 및 카피 자동 생성<br>
+              • 브랜드 가이드라인과 톤앤매너를 유지하는 시스템 프롬프트 작성<br>
+              • 배너 광고, 소셜 콘텐츠 대량 제작 파이프라인 구축
+            </div>
+          </div>
+
+          <!-- Week 3 -->
+          <div class="week-node">
+            <div class="week-header">
+              <span class="week-tag"><span data-i18n="course.weeks">주차</span> 03</span>
+              <span class="week-time">4 <span data-i18n="course.hours">Hours</span></span>
+            </div>
+            <h4 data-i18n="ax401.w3">n8n / Dify를 활용한 CRM 마케팅 자동화 트리거 설계</h4>
+            <div class="week-desc" data-i18n="ax401.w3_detail">
+              • n8n 노코드 워크플로우 엔진 기반의 자동화 파이프라인 설계<br>
+              • 고객 행동(회원가입, 장바구니 방치, 첫 결제 등) 발생 시 Dify 에이전트를 통한 맞춤형 메시지 자동 생성<br>
+              • 알림톡, 이메일, 슬랙 연동 발송 자동화
+            </div>
+          </div>
+
+          <!-- Week 4 -->
+          <div class="week-node">
+            <div class="week-header">
+              <span class="week-tag"><span data-i18n="course.weeks">주차</span> 04</span>
+              <span class="week-time">4 <span data-i18n="course.hours">Hours</span></span>
+            </div>
+            <h4 data-i18n="ax401.w4">CRM 데이터 분석, 마케팅 캠페인 성과 지표(GA4 등) 분석 및 최적화</h4>
+            <div class="week-desc" data-i18n="ax401.w4_detail">
+              • CRM 마케팅 유입 성과 데이터 및 사용자 행동 로그 수집<br>
+              • GA4(Google Analytics) 및 내부 데이터베이스 연동 성과 시각화<br>
+              • AI 분석을 활용한 발송 시간 및 메시지 카피 A/B 테스트 최적화 루틴 수립
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ BOTTOM CTA ══════════════════════════ -->
+<section class="subpage-cta">
+  <div class="shell">
+    <h2 data-i18n="form.registerTitle">Course Registration</h2>
+    <p data-i18n="form.registerSub">수강을 원하시는 코스를 선택하고 필수 정보들을 입력해 주세요. 접수 후 빠른 시일 내에 안내 메일을 전달 드립니다.</p>
+    <div class="subpage-cta-btns">
+      <a href="index.html?course=AX401#register" class="btn-primary" data-i18n="course.enrollCTA">수강 신청하기</a>
+      <a href="index.html#curriculum" class="btn-secondary" data-i18n="course.backCTA">커리큘럼 목록으로</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════ FOOTER ════════════════════════════════ -->
+<footer class="footer">
+  <div class="shell footer-inner">
+    <p class="footer__copy">© 2026 CareAX · Rana Lee · 이라나</p>
+    <div class="footer-links">
+      <a href="mailto:careax.rana@gmail.com">careax.rana@gmail.com</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/i18n.js?v=3.1.3"></script>
+<script>
+  // Simple listener to handle language toggle on subpages
+  document.addEventListener('DOMContentLoaded', () => {
+    // If language changes, sync it and reload page or re-apply
+    const langToggle = document.getElementById('langToggle');
+    if (langToggle) {
+      langToggle.addEventListener('click', () => {
+        // Delay slightly to let i18n switcher process
+        setTimeout(() => {
+          window.location.reload();
+        }, 50);
+      });
+    }
+  });
+</script>
+</body>
+</html>

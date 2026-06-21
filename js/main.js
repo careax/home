@@ -194,4 +194,35 @@ document.addEventListener('DOMContentLoaded', () => {
   
   regModalClose?.addEventListener('click', closeRegModal);
   regModalBackdrop?.addEventListener('click', closeRegModal);
+
+  /* ─── Query parameter course selection ────────────────────────────── */
+  const urlParams = new URLSearchParams(window.location.search);
+  const courseParam = urlParams.get('course');
+  if (courseParam) {
+    let targetCourse = "";
+    const cleanParam = courseParam.replace(/[-·\s]/g, '').toUpperCase(); // e.g. "AX101"
+    if (cleanParam === "AX101") targetCourse = "AX · 101";
+    else if (cleanParam === "AX201") targetCourse = "AX · 201";
+    else if (cleanParam === "AX301") targetCourse = "AX · 301";
+    else if (cleanParam === "AX401") targetCourse = "AX · 401";
+
+    if (targetCourse) {
+      const regSelect = document.getElementById('regCourse');
+      const popupSelect = document.getElementById('popupRegCourse');
+      if (regSelect) regSelect.value = targetCourse;
+      if (popupSelect) popupSelect.value = targetCourse;
+
+      // Scroll to register section smoothly after a brief delay
+      setTimeout(() => {
+        const regSection = document.getElementById('register');
+        if (regSection) {
+          const offset = 72; // Nav height offset
+          window.scrollTo({
+            top: regSection.getBoundingClientRect().top + window.scrollY - offset,
+            behavior: 'smooth'
+          });
+        }
+      }, 300);
+    }
+  }
 });
