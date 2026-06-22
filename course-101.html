@@ -11,41 +11,48 @@
   <link rel="icon" type="image/png" href="public/assets/careax_bi_favicon.png?v=2.3.0" />
   <link rel="stylesheet" href="css/style.css?v=2.3.0" />
   <style>
-    /* Detailed Subpage Specific Styles (CareAX Premium Dark Theme) */
+    /* Alternate Layout Style for Subpages */
+    body {
+      background: #fafaf8;
+      color: #0a0a0a;
+    }
+
+    /* Hero section: LIGHT mode */
     .subpage-hero {
       position: relative;
-      padding: 140px 0 60px;
-      border-bottom: 1px solid var(--line);
-      overflow: hidden;
+      padding: 140px 0 72px;
+      background: #fafaf8;
+      color: #0a0a0a;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
     }
     .back-link {
       display: inline-flex;
       align-items: center;
       gap: 8px;
       font-family: var(--mono);
-      font-size: 12px;
-      letter-spacing: .1em;
-      color: var(--fg-3);
+      font-size: 11px;
+      letter-spacing: .15em;
+      color: #6b6b6b;
       text-transform: uppercase;
       margin-bottom: 24px;
       transition: color .25s;
     }
     .back-link:hover {
-      color: #fff;
+      color: #000;
     }
     .hero-meta-badge {
       display: inline-flex;
       align-items: center;
       gap: 12px;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
     .hero-meta-badge .code {
       font-family: var(--mono);
       font-size: 11px;
       letter-spacing: .2em;
-      color: var(--fg-2);
+      color: #111;
       padding: 4px 10px;
-      border: 1px solid var(--line-2);
+      border: 1px solid rgba(0,0,0,0.15);
       border-radius: 4px;
     }
     .hero-meta-badge .level {
@@ -59,122 +66,160 @@
       color: var(--cyan);
     }
     .subpage-hero h1 {
-      font-size: clamp(32px, 5vw, 54px);
-      font-weight: 800;
-      line-height: 1.2;
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 850;
+      line-height: 1.15;
       letter-spacing: -.02em;
-      color: #fff;
+      color: #000;
       margin-bottom: 18px;
     }
     .subpage-hero .subtitle {
-      font-size: 16px;
+      font-size: 14px;
       line-height: 1.6;
-      color: var(--fg-3);
-      margin-bottom: 28px;
-      font-family: var(--en);
-      letter-spacing: 0.05em;
+      color: #6b6b6b;
+      margin-bottom: 24px;
+      font-family: var(--mono);
+      letter-spacing: 0.1em;
       text-transform: uppercase;
     }
     .subpage-hero .desc {
       font-size: 18px;
       line-height: 1.7;
-      color: var(--fg-2);
-      max-width: 800px;
+      color: #333;
+      max-width: 840px;
     }
 
-    /* Subpage Layout Grid */
-    .subpage-content {
-      padding: 80px 0 120px;
+    /* Alternating Section: DARK mode */
+    .section-dark {
+      background: #0a0a0a !important;
+      color: #ffffff !important;
+      padding: 100px 0;
+      border-bottom: 1px solid var(--line);
+      position: relative;
     }
-    .subpage-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 48px;
-      align-items: start;
+    .section-dark .eyebrow {
+      color: var(--fg-3) !important;
     }
-    @media(max-width:980px){
-      .subpage-grid {
-        grid-template-columns: 1fr;
-        gap: 36px;
+    .section-dark .eyebrow .num {
+      border-color: var(--line-2) !important;
+      color: #fff !important;
+    }
+    .section-dark .h-section {
+      color: #fff !important;
+      margin-bottom: 48px;
+    }
+
+    /* System Flow Diagram Component */
+    .flow-wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .flow-desc {
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--fg-3);
+      max-width: 760px;
+      margin-bottom: 40px;
+    }
+    .flow-diagram {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 40px;
+    }
+    .flow-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: 24px;
+      text-align: center;
+      min-width: 156px;
+      flex: 1;
+      position: relative;
+      transition: all .35s cubic-bezier(.22,1,.36,1);
+    }
+    .flow-card:hover {
+      border-color: var(--cyan);
+      box-shadow: 0 12px 30px rgba(34,211,238,0.12);
+      transform: translateY(-4px);
+      background: rgba(255,255,255,0.04);
+    }
+    .flow-card .num {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--fg-3);
+      display: block;
+      margin-bottom: 12px;
+      letter-spacing: 0.1em;
+    }
+    .flow-card h4 {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.35;
+    }
+    .flow-connector {
+      color: rgba(255,255,255,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .flow-connector .arrow-icon {
+      width: 20px;
+      height: 20px;
+    }
+    @media(max-width: 980px) {
+      .flow-diagram {
+        flex-direction: column;
+        gap: 12px;
+      }
+      .flow-connector {
+        transform: rotate(90deg);
+        margin: 6px 0;
+      }
+      .flow-card {
+        width: 100%;
+        max-width: 360px;
       }
     }
 
-    /* Info Cards */
-    .info-card {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid var(--line);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      padding: 40px;
-      border-radius: 8px;
-      margin-bottom: 32px;
-      position: relative;
-      overflow: hidden;
+    /* Alternating Section: LIGHT mode */
+    .section-light {
+      background: #fafaf8 !important;
+      color: #0a0a0a !important;
+      padding: 100px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.06) !important;
     }
-    .info-card::before {
-      content: "";
-      position: absolute;
-      left: 0; right: 0; top: 0;
-      height: 1px;
-      background: var(--grad);
+    .section-light .eyebrow {
+      color: #6b6b6b !important;
     }
-    .info-card h3 {
-      font-size: 20px;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 24px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
+    .section-light .eyebrow .num {
+      border-color: rgba(0,0,0,0.15) !important;
+      color: #0a0a0a !important;
     }
-    .info-card h3 .icon {
-      width: 12px;
-      height: 12px;
-      background: var(--grad);
-      transform: rotate(45deg);
-      display: inline-block;
-    }
-    .info-card .card-text {
-      font-size: 15.5px;
-      line-height: 1.8;
-      color: var(--fg-2);
-    }
-    .info-card .card-text p {
-      margin-bottom: 12px;
-    }
-    .info-card .card-text p:last-child {
-      margin-bottom: 0;
+    .section-light .h-section {
+      color: #0a0a0a !important;
+      margin-bottom: 48px;
     }
 
-    /* Weekly Timeline */
-    .timeline-title {
-      font-size: 24px;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 32px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-family: var(--en);
-      letter-spacing: 0.02em;
-    }
-    .timeline-title .line-deco {
-      flex: 1;
-      height: 1px;
-      background: var(--line);
-    }
-    .week-timeline {
+    /* Timeline Component for Syllabus */
+    .syllabus-timeline {
       position: relative;
-      padding-left: 32px;
+      padding-left: 36px;
+      max-width: 900px;
+      margin: 0 auto;
     }
-    .week-timeline::before {
+    .syllabus-timeline::before {
       content: "";
       position: absolute;
       left: 7px;
       top: 10px;
       bottom: 10px;
       width: 1px;
-      background: var(--line);
+      background: rgba(0,0,0,0.1);
     }
     .week-node {
       position: relative;
@@ -186,25 +231,25 @@
     .week-node::before {
       content: "";
       position: absolute;
-      left: -32px;
+      left: -36px;
       top: 6px;
       width: 15px;
       height: 15px;
       border-radius: 50%;
-      background: #000;
-      border: 2px solid var(--violet);
+      background: #fafaf8;
+      border: 2px solid var(--cyan);
       z-index: 2;
     }
     .week-node.active::before {
       background: var(--grad);
       border-color: transparent;
-      box-shadow: 0 0 12px var(--violet);
+      box-shadow: 0 0 10px rgba(34,211,238,0.5);
     }
     .week-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 12px;
+      margin-bottom: 8px;
       flex-wrap: wrap;
       gap: 8px;
     }
@@ -212,43 +257,91 @@
       font-family: var(--mono);
       font-size: 11px;
       letter-spacing: .2em;
-      color: var(--violet);
+      color: var(--cyan);
       text-transform: uppercase;
-      font-weight: 600;
+      font-weight: 700;
     }
     .week-time {
       font-family: var(--mono);
       font-size: 11px;
-      color: var(--fg-3);
+      color: #6b6b6b;
     }
     .week-node h4 {
+      font-size: 19px;
+      font-weight: 800;
+      color: #000;
+      line-height: 1.35;
+      margin-bottom: 12px;
+    }
+    .week-desc {
+      font-size: 15px;
+      line-height: 1.75;
+      color: #444;
+    }
+
+    /* Audience & Outcomes Section (Dark) */
+    .grid-info-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    @media(max-width:900px){
+      .grid-info-cards {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+    }
+    .dark-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 32px;
+      border-radius: 6px;
+      position: relative;
+    }
+    .dark-card::before {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; top: 0;
+      height: 1px;
+      background: var(--grad);
+    }
+    .dark-card h3 {
       font-size: 18px;
       font-weight: 700;
       color: #fff;
-      line-height: 1.4;
-      margin-bottom: 10px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
-    .week-desc {
+    .dark-card h3 .bullet {
+      width: 8px;
+      height: 8px;
+      background: var(--cyan);
+      transform: rotate(45deg);
+    }
+    .dark-card .desc-text {
       font-size: 14.5px;
       line-height: 1.7;
-      color: var(--fg-3);
+      color: var(--fg-2);
     }
 
-    /* Bottom CTA Section */
+    /* Bottom CTA Section: Light */
     .subpage-cta {
-      border-top: 1px solid var(--line);
-      padding: 80px 0;
+      background: #fafaf8;
+      border-top: 1px solid rgba(0,0,0,0.06);
+      padding: 96px 0;
       text-align: center;
-      background: rgba(255, 255, 255, 0.01);
+      color: #0a0a0a;
     }
     .subpage-cta h2 {
       font-size: 32px;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 18px;
+      font-weight: 850;
+      color: #000;
+      margin-bottom: 16px;
     }
     .subpage-cta p {
-      color: var(--fg-3);
+      color: #555;
       font-size: 16px;
       margin-bottom: 36px;
     }
@@ -260,7 +353,7 @@
     }
     .btn-primary {
       font-family: var(--en);
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 700;
       letter-spacing: .18em;
       text-transform: uppercase;
@@ -269,6 +362,7 @@
       background: var(--grad);
       color: #000;
       transition: opacity .2s, transform .2s;
+      display: inline-block;
     }
     .btn-primary:hover {
       opacity: .9;
@@ -276,18 +370,20 @@
     }
     .btn-secondary {
       font-family: var(--en);
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 700;
       letter-spacing: .18em;
       text-transform: uppercase;
       padding: 18px 36px;
       border-radius: 4px;
-      border: 1px solid var(--line-2);
-      color: #fff;
-      transition: border-color .2s, transform .2s;
+      border: 1px solid rgba(0,0,0,0.15);
+      color: #111;
+      transition: all .2s;
+      display: inline-block;
     }
     .btn-secondary:hover {
-      border-color: #fff;
+      border-color: #000;
+      color: #000;
       transform: translateY(-1px);
     }
   </style>
@@ -295,7 +391,7 @@
 <body>
 
 <!-- ═══════════════════════════════ NAV ═══════════════════════════════ -->
-<header class="nav dark" id="nav">
+<header class="nav" id="nav">
   <div class="shell nav-inner">
     <a href="index.html" class="brand" aria-label="홈으로">
       <span class="glyph" style="display: flex; align-items: center;">
@@ -319,8 +415,8 @@
   </div>
 </header>
 
-<!-- ══════════════════════════ SUBPAGE HERO ══════════════════════════ -->
-<section class="subpage-hero">
+<!-- ══════════════════════════ SUBPAGE HERO (LIGHT) ══════════════════════════ -->
+<section id="hero" class="subpage-hero">
   <div class="shell">
     <a href="index.html#curriculum" class="back-link">
       <span>&larr;</span> <span data-i18n="course.backCTA">Back to Curriculum</span>
@@ -339,114 +435,195 @@
   </div>
 </section>
 
-<!-- ════════════════════════ SUBPAGE CONTENT ════════════════════════ -->
-<section class="subpage-content">
+<!-- ══════════════════════════ SYSTEM FLOW SECTION (DARK) ══════════════════════════ -->
+<section class="section-dark">
   <div class="shell">
-    <div class="subpage-grid">
+    <div class="eyebrow">
+      <span class="num">01 / Flow</span>
+      <span class="bar"></span>
+      <span data-i18n="course.systemFlow">핵심 시스템 구조 & 데이터 흐름</span>
+    </div>
+    
+    <div class="flow-wrapper">
+      <p class="flow-desc" data-i18n="flow.101.desc">
+        사용자의 질문 의도를 Dify 라우터로 분석하고, 적합한 RAG 문서 컨텍스트를 프롬프트와 결합하여 최적의 LLM 답변을 도출하는 6단계 실전 RAG 파이프라인입니다.
+      </p>
       
-      <!-- Left Column: Info Cards -->
-      <div class="grid-left">
+      <div class="flow-diagram">
+        <!-- Node 1 -->
+        <div class="flow-card">
+          <span class="num">01</span>
+          <h4 data-i18n="flow.101.n1">사용자 질문 (User Input)</h4>
+        </div>
         
-        <!-- Target Audience -->
-        <div class="info-card">
-          <h3><span class="icon"></span><span data-i18n="course.audience">수강 대상</span></h3>
-          <div class="card-text">
-            <p data-i18n="ax101.audience">비개발자 기획자/PM, IT 직무 취업준비생, AI 기획 역량을 포트폴리오에 담고 싶은 분</p>
-          </div>
+        <!-- Arrow -->
+        <div class="flow-connector">
+          <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </div>
 
-        <!-- Course Objectives -->
-        <div class="info-card">
-          <h3><span class="icon"></span><span data-i18n="course.objectives">학습 목표</span></h3>
-          <div class="card-text" data-i18n="ax101.objectives">
-            성공한 AI 서비스의 아키텍처를 Dify로 분석하고 직접 구현하기<br>
-            • 텍스트·문서 파싱 및 RAG 지식 베이스 설계 기법 터득<br>
-            • 현업 수준의 AI 프로덕트 기획안 작성 및 실제 론칭
-          </div>
+        <!-- Node 2 -->
+        <div class="flow-card">
+          <span class="num">02</span>
+          <h4 data-i18n="flow.101.n2">Dify 의도 분류기 (Router)</h4>
         </div>
 
-        <!-- Hands-on Project Outcomes -->
-        <div class="info-card">
-          <h3><span class="icon"></span><span data-i18n="course.projects">실전 프로젝트 결과물</span></h3>
-          <div class="card-text">
-            <p data-i18n="ax101.projects">Dify 기반의 AI 서비스 역기획 프로토타입 + 실무 AI 서비스 기획서 및 개인 포트폴리오 웹사이트 배포</p>
-          </div>
+        <!-- Arrow -->
+        <div class="flow-connector">
+          <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </div>
 
+        <!-- Node 3 -->
+        <div class="flow-card">
+          <span class="num">03</span>
+          <h4 data-i18n="flow.101.n3">지식 문서 조회 (RAG)</h4>
+        </div>
+
+        <!-- Arrow -->
+        <div class="flow-connector">
+          <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+
+        <!-- Node 4 -->
+        <div class="flow-card">
+          <span class="num">04</span>
+          <h4 data-i18n="flow.101.n4">프롬프트 컴파일러</h4>
+        </div>
+
+        <!-- Arrow -->
+        <div class="flow-connector">
+          <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+
+        <!-- Node 5 -->
+        <div class="flow-card">
+          <span class="num">05</span>
+          <h4 data-i18n="flow.101.n5">LLM 답변 생성</h4>
+        </div>
+
+        <!-- Arrow -->
+        <div class="flow-connector">
+          <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+
+        <!-- Node 6 -->
+        <div class="flow-card">
+          <span class="num">06</span>
+          <h4 data-i18n="flow.101.n6">최종 답변 UI</h4>
+        </div>
       </div>
-
-      <!-- Right Column: Timeline -->
-      <div class="grid-right">
-        <h3 class="timeline-title">
-          <span data-i18n="course.curriculum">Weekly Syllabus</span>
-          <span class="line-deco"></span>
-        </h3>
-        
-        <div class="week-timeline">
-          <!-- Week 1 -->
-          <div class="week-node active">
-            <div class="week-header">
-              <span class="week-tag"><span data-i18n="course.weeks">주차</span> 01</span>
-              <span class="week-time">4 <span data-i18n="course.hours">Hours</span></span>
-            </div>
-            <h4 data-i18n="ax101.w1">AI 서비스 기획 프로세스 & 유명 AI 서비스 Dify 기반 역기획 분석</h4>
-            <div class="week-desc" data-i18n="ax101.w1_detail">
-              • AI 서비스 기획 프로세스 개요<br>
-              • 최신 LLM 기술 트렌드 및 기획자의 역할 정의<br>
-              • 시장에서 검증된 AI 프로덕트(서비스) 역기획 및 데이터 흐름 분석
-            </div>
-          </div>
-
-          <!-- Week 2 -->
-          <div class="week-node">
-            <div class="week-header">
-              <span class="week-tag"><span data-i18n="course.weeks">주차</span> 02</span>
-              <span class="week-time">4 <span data-i18n="course.hours">Hours</span></span>
-            </div>
-            <h4 data-i18n="ax101.w2">노코드 RAG 기반 데이터 전처리 & 지식 베이스 설계</h4>
-            <div class="week-desc" data-i18n="ax101.w2_detail">
-              • PDF, Word, Web 등 다양한 포맷의 문서 파싱 및 가공 기법<br>
-              • 오답(Hallucination) 방지를 위한 벡터 스토어 임베딩 최적화<br>
-              • AI 서비스의 핵심이 되는 RAG(검색 증강 생성) 지식 베이스 기획
-            </div>
-          </div>
-
-          <!-- Week 3 -->
-          <div class="week-node">
-            <div class="week-header">
-              <span class="week-tag"><span data-i18n="course.weeks">주차</span> 03</span>
-              <span class="week-time">4 <span data-i18n="course.hours">Hours</span></span>
-            </div>
-            <h4 data-i18n="ax101.w3">Dify / Flowise를 활용한 프롬프트 파이프라인 & LLM 워크플로우 구현</h4>
-            <div class="week-desc" data-i18n="ax101.w3_detail">
-              • Dify 및 Flowise를 활용한 노코드 프롬프트 파이프라인 설계<br>
-              • 다중 조건 분기 처리 및 API 연동을 통한 에이전트 워크플로우 최적화<br>
-              • 멀티턴 대화 시나리오 및 시스템 프롬프트(System Prompt) 고도화
-            </div>
-          </div>
-
-          <!-- Week 4 -->
-          <div class="week-node">
-            <div class="week-header">
-              <span class="week-tag"><span data-i18n="course.weeks">주차</span> 04</span>
-              <span class="week-time">4 <span data-i18n="course.hours">Hours</span></span>
-            </div>
-            <h4 data-i18n="ax101.w4">실제 AI 서비스 프로토타입 론칭 & 실무 포트폴리오 피드백</h4>
-            <div class="week-desc" data-i18n="ax101.w4_detail">
-              • 프론트엔드 UI 화면 구현 및 웹 배포<br>
-              • 실제 작동하는 AI 서비스 포트폴리오 완성<br>
-              • 현업 PM 강사의 1:1 맞춤형 기획서 피드백 및 포트폴리오 리뷰
-            </div>
-          </div>
-        </div>
-
-      </div>
-
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════ BOTTOM CTA ══════════════════════════ -->
+<!-- ══════════════════════════ SYLLABUS SECTION (LIGHT) ══════════════════════════ -->
+<section class="section-light">
+  <div class="shell">
+    <div class="eyebrow">
+      <span class="num">02 / Syllabus</span>
+      <span class="bar"></span>
+      <span data-i18n="course.curriculum">주차별 커리큘럼</span>
+    </div>
+    
+    <div class="syllabus-timeline">
+      <!-- Week 1 -->
+      <div class="week-node active">
+        <div class="week-header">
+          <span class="week-tag"><span data-i18n="course.weeks">주차</span> 01</span>
+          <span class="week-time">4 <span data-i18n="course.hours">Hours</span></span>
+        </div>
+        <h4 data-i18n="ax101.w1">AI 서비스 기획 프로세스 & 유명 AI 서비스 Dify 기반 역기획 분석</h4>
+        <div class="week-desc" data-i18n="ax101.w1_detail">
+          • AI 서비스 기획 프로세스 개요<br>
+          • 최신 LLM 기술 트렌드 및 기획자의 역할 정의<br>
+          • 시장에서 검증된 AI 프로덕트(서비스) 역기획 및 데이터 흐름 분석
+        </div>
+      </div>
+
+      <!-- Week 2 -->
+      <div class="week-node">
+        <div class="week-header">
+          <span class="week-tag"><span data-i18n="course.weeks">주차</span> 02</span>
+          <span class="week-time">4 <span data-i18n="course.hours">Hours</span></span>
+        </div>
+        <h4 data-i18n="ax101.w2">노코드 RAG 기반 데이터 전처리 & 지식 베이스 설계</h4>
+        <div class="week-desc" data-i18n="ax101.w2_detail">
+          • PDF, Word, Web 등 다양한 포맷의 문서 파싱 및 가공 기법<br>
+          • 오답(Hallucination) 방지를 위한 벡터 스토어 임베딩 최적화<br>
+          • AI 서비스의 핵심이 되는 RAG(검색 증강 생성) 지식 베이스 기획
+        </div>
+      </div>
+
+      <!-- Week 3 -->
+      <div class="week-node">
+        <div class="week-header">
+          <span class="week-tag"><span data-i18n="course.weeks">주차</span> 03</span>
+          <span class="week-time">4 <span data-i18n="course.hours">Hours</span></span>
+        </div>
+        <h4 data-i18n="ax101.w3">Dify / Flowise를 활용한 프롬프트 파이프라인 & LLM 워크플로우 구현</h4>
+        <div class="week-desc" data-i18n="ax101.w3_detail">
+          • Dify 및 Flowise를 활용한 노코드 프롬프트 파이프라인 설계<br>
+          • 다중 조건 분기 처리 및 API 연동을 통한 에이전트 워크플로우 최적화<br>
+          • 멀티턴 대화 시나리오 및 시스템 프롬프트(System Prompt) 고도화
+        </div>
+      </div>
+
+      <!-- Week 4 -->
+      <div class="week-node">
+        <div class="week-header">
+          <span class="week-tag"><span data-i18n="course.weeks">주차</span> 04</span>
+          <span class="week-time">4 <span data-i18n="course.hours">Hours</span></span>
+        </div>
+        <h4 data-i18n="ax101.w4">실제 AI 서비스 프로토타입 론칭 & 실무 포트폴리오 피드백</h4>
+        <div class="week-desc" data-i18n="ax101.w4_detail">
+          • 프론트엔드 UI 화면 구현 및 웹 배포<br>
+          • 실제 작동하는 AI 서비스 포트폴리오 완성<br>
+          • 현업 PM 강사의 1:1 맞춤형 기획서 피드백 및 포트폴리오 리뷰
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ DETAILS SECTION (DARK) ══════════════════════════ -->
+<section class="section-dark">
+  <div class="shell">
+    <div class="eyebrow">
+      <span class="num">03 / Target &amp; Project</span>
+      <span class="bar"></span>
+      <span>Overview</span>
+    </div>
+    
+    <div class="grid-info-cards">
+      <!-- Target Audience -->
+      <div class="dark-card">
+        <h3><span class="bullet"></span><span data-i18n="course.audience">수강 대상</span></h3>
+        <div class="desc-text" data-i18n="ax101.audience">
+          비개발자 기획자/PM, IT 직무 취업준비생, AI 기획 역량을 포트폴리오에 담고 싶은 분
+        </div>
+      </div>
+
+      <!-- Course Objectives -->
+      <div class="dark-card">
+        <h3><span class="bullet"></span><span data-i18n="course.objectives">학습 목표</span></h3>
+        <div class="desc-text" data-i18n="ax101.objectives">
+          성공한 AI 서비스의 아키텍처를 Dify로 분석하고 직접 구현하기<br>
+          • 텍스트·문서 파싱 및 RAG 지식 베이스 설계 기법 터득<br>
+          • 현업 수준의 AI 프로덕트 기획안 작성 및 실제 론칭
+        </div>
+      </div>
+
+      <!-- Hands-on Project Outcomes -->
+      <div class="dark-card">
+        <h3><span class="bullet"></span><span data-i18n="course.projects">실전 프로젝트 결과물</span></h3>
+        <div class="desc-text" data-i18n="ax101.projects">
+          Dify 기반의 AI 서비스 역기획 프로토타입 + 실무 AI 서비스 기획서 및 개인 포트폴리오 웹사이트 배포
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ BOTTOM CTA (LIGHT) ══════════════════════════ -->
 <section class="subpage-cta">
   <div class="shell">
     <h2 data-i18n="form.registerTitle">Course Registration</h2>
@@ -472,11 +649,9 @@
 <script>
   // Simple listener to handle language toggle on subpages
   document.addEventListener('DOMContentLoaded', () => {
-    // If language changes, sync it and reload page or re-apply
     const langToggle = document.getElementById('langToggle');
     if (langToggle) {
       langToggle.addEventListener('click', () => {
-        // Delay slightly to let i18n switcher process
         setTimeout(() => {
           window.location.reload();
         }, 50);
