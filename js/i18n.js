@@ -214,6 +214,10 @@ const DICT = {
     'form.regSubmit':        '수강 신청하기',
     'modal.regSuccessTitle': '수강신청 완료',
     'modal.regSuccessDesc':  '수강신청이 성공적으로 접수되었습니다.<br>입력하신 이메일로 안내 메일이 발송됩니다.',
+    'form.course101':        'AX · 101 (AI 서비스 기획 & Dify 활용 역기획 실무 마스터)',
+    'form.course201':        'AX · 201 (피그마 & AI 활용 디자인 시스템 구축 및 자동화 실무)',
+    'form.course301':        'AX · 301 (AICC 서비스 기획 및 LLM 에이전트 구축 실무)',
+    'form.course401':        'AX · 401 (생성형 AI 마케팅 & CRM 업무 자동화 캠프)',
   },
 
   en: {
@@ -426,6 +430,10 @@ const DICT = {
     'form.regSubmit':        'Register Course',
     'modal.regSuccessTitle': 'Registration Complete',
     'modal.regSuccessDesc':  'Your application has been successfully submitted.<br>An invitation email will be sent to your address.',
+    'form.course101':        'AX · 101 (AI Service Planning & Reverse Engineering w/ Dify)',
+    'form.course201':        'AX · 201 (Design System w/ Figma & AI Automation Practice)',
+    'form.course301':        'AX · 301 (AICC Planning & LLM Agent Implementation)',
+    'form.course401':        'AX · 401 (Generative AI Marketing & CRM Automation Camp)',
   }
 };
 
